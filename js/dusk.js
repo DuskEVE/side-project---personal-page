@@ -12,4 +12,4 @@ function navbarFixed() {
     }
 }
 
-window.onscroll = navbarFixed;
+addEventListener('scroll', navbarFixed);
