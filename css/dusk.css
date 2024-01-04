@@ -4,7 +4,6 @@
 .dusk-bg-lightgray{
     background-color: rgb(80, 80, 80);
 }
-
 .top{
     height: 20vh;
 }
@@ -15,4 +14,10 @@
 }
 .footer{
     height: 20vh;
+}
+.menu-btn{
+    /* position: absolute; */
+    width: 399px;
+    top: 0px;
+    left: 0px;
 }
