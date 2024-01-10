@@ -1,6 +1,6 @@
 const navBar = document.querySelector(".navbar");
 const navPlaceholder = document.querySelector(".nav-placeholder");
-const loginBtn = document.querySelector(".login-btn");
+const loginBtn = $('.login-btn');
 const loginModal = new bootstrap.Modal("#login-modal", {backdrop:'static'});
 
 function navbarFixed(){
@@ -18,4 +18,4 @@ function login(){
 }
 
 addEventListener('scroll', navbarFixed);
-loginBtn.addEventListener('click', login)
+loginBtn.on('click', login)
