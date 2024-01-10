@@ -1,3 +1,8 @@
+<?php
+session_start();
+include_once "./api/db.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

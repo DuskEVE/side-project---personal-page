@@ -1,3 +1,8 @@
+<?php
+session_start();
+include_once "./api/db.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +72,11 @@
   </div>
 
   <div class="container dusk-bg-lightgray vh-100">
-
+  <?php
+    $do = ['admin'];
+    if(isset($_GET['do']) && in_array($_GET['do'], $do)) include "./back/account.php";
+    else include "./back/main.php";
+  ?>
   </div>
 
   <div class="footer bg-dark text-light d-flex justify-content-center align-items-center">
