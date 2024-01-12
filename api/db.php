@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class myDB{
     private $host;
     private $charset;
@@ -8,7 +8,7 @@ class myDB{
     private $user;
     private $password;
 
-    function __construct($host, $charset, $database, $table, $user, $password){
+    function __construct($host, $charset, $database, $user, $password, $table){
         $this->host = $host;
         $this->charset = $charset;
         $this->database = $database;
@@ -107,5 +107,7 @@ class myDB{
         return $count['count(*)'];
     }
 }
+
+$User = new myDB('localhost', 'utf8', 'p01', 'root', '', 'user');
 
 ?>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once "./api/db.php";
 ?>
 
@@ -58,7 +57,14 @@ include_once "./api/db.php";
             <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
           <!-- </form> -->
           <div class="d-flex">
-            <button class="btn btn-outline-success login-btn">login</button>
+            <?php
+              if(isset($_SESSION['user'])){
+                echo "<span class='text-light'>歡迎!{$_SESSION['user']}<span>";
+                echo "<button class='btn btn-outline-success logout-btn'>logout</button>";
+                if(isset($_SESSION['admin'])) echo "<a class='btn btn-outline-success' href='./admin.php'>admin</a>";
+              }
+              else echo "<button class='btn btn-outline-success login-btn'>login</button>";
+            ?>
           </div>
         </div>
       </div>
