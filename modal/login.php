@@ -22,5 +22,8 @@
             </fieldset>
 
         </div>
+        <div class="modal-footer justify-content-center">
+            <a href="./index.php?do=reg">註冊新使用者</a>
+        </div>
     </div>
 </div>

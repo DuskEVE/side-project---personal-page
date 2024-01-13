@@ -84,7 +84,7 @@ class myDB{
             $values = array_values($target);
             $sql = "insert into `$this->table`(`".implode("`,`", $cols)."`) values('".implode("','", $values)."')";
         }
-        echo $sql;
+
         return $pdo->exec($sql);
     }
 

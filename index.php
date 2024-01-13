@@ -25,7 +25,7 @@ include_once "./api/db.php";
   <div class="nav-placeholder"></div>
   <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Dusk</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -82,30 +82,17 @@ include_once "./api/db.php";
   </nav>
 
   <div class="container dusk-bg-lightgray">
-      <div id="carouselAuto" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://picsum.photos/id/1/600/400" class="d-block m-auto" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="https://picsum.photos/id/2/600/400" class="d-block m-auto" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="https://picsum.photos/id/3/600/400" class="d-block m-auto" alt="...">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselAuto" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselAuto" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-      </div>
+    <?php
+    if(isset($_GET['do'])){
+      $file = "./front/{$_GET['do']}.php";
+      if(file_exists($file)) include $file;
+      else include "./front/main.php";
+    }
+    else include "./front/main.php";
+    ?>
   </div>
 
-  <div class="container dusk-bg-lightgray vh-100">
+  <div class="container vh-100">
 
   </div>
 
