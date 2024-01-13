@@ -67,10 +67,10 @@ include_once "./api/db.php";
             <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
             <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
           <!-- </form> -->
-          <div class="d-flex">
+          <div class="d-flex align-items-center">
             <?php
               if(isset($_SESSION['user'])){
-                echo "<span class='text-light me-2'>歡迎!{$_SESSION['user']}<span>";
+                echo "<span class='text-light me-2'>歡迎!{$_SESSION['user']}</span>";
                 echo "<button class='btn btn-outline-success logout-btn me-2'>logout</button>";
                 if(isset($_SESSION['admin'])) echo "<a class='btn btn-outline-success me-2' href='./admin.php'>admin</a>";
               }
