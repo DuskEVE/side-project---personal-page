@@ -19,7 +19,15 @@ include_once "./api/db.php";
   </div>
 
   <div class="top">
-      <div class="top-img"></div>
+    <?php
+      $banner;
+      if(isset($_GET['type']) && $Banner->count(['type_id'=>$_GET['type']])!=0){
+        $banner = $Banner->search(['type_id'=>$_GET['type']])['img'];
+      }
+      else $banner = $Banner->search(['type_id'=>0])['img'];
+      echo "<div class='top-img' style='background-image: url(./banner/$banner);'></div>";
+    ?>
+    <!-- <div class="top-img"></div> -->
   </div>
 
   <div class="nav-placeholder"></div>

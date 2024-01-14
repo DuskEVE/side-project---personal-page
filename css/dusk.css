@@ -5,12 +5,13 @@
     background-color: rgb(80, 80, 80);
 }
 .top{
-    height: 20vh;
+    height: 30vh;
 }
 .top-img{
     width: 100%;
     height: 100%;
-    background-image: url("https://picsum.photos/id/11/1920/300");
+    background-size: cover;
+    /* background-image: url("https://picsum.photos/id/11/1920/300"); */
 }
 .footer{
     height: 20vh;
