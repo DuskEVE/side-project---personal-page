@@ -6,8 +6,6 @@ const loginSubmit = $('.login-submit');
 const logoutBtn = $('.logout-btn');
 const regSubmit = $('.reg-submit');
 const galleryGrid = $('.gallery-grid');
-// const galleryImg = $('.gallery-img');
-// const galleryTitle = $('.gallery-title');
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.2) {
@@ -62,8 +60,4 @@ loginSubmit.on('click', login);
 logoutBtn.on('click', logout);
 regSubmit.on('click', reg);
 galleryGrid.on('mouseover', titleShow);
-// galleryImg.on('mouseover', titleShow);
-// galleryTitle.on('mouseover', titleShow);
 galleryGrid.on('mouseout', titleHide);
-// galleryImg.on('mouseout', titleHide);
-// galleryTitle.on('mouseout', titleHide);

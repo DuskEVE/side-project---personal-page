@@ -32,9 +32,6 @@ include_once "./api/db.php";
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
             <!-- <li class="nav-item">
-              <a class="nav-link active me-3" aria-current="page" href="#">Home</a>
-            </li> -->
-            <!-- <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li> -->
             <li class="nav-item dropdown me-3">
@@ -69,20 +66,17 @@ include_once "./api/db.php";
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li> -->
           </ul>
-          <!-- <form class="d-flex" role="search"> -->
-            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-            <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-          <!-- </form> -->
-          <div class="d-flex align-items-center">
+
+          <div class="d-flex align-items-center ms-3">
             <?php
               if(isset($_SESSION['user'])){
                 echo "<span class='text-light me-2'>歡迎!{$_SESSION['user']}</span>";
-                echo "<button class='btn btn-outline-success logout-btn me-2'>logout</button>";
-                if(isset($_SESSION['admin'])) echo "<a class='btn btn-outline-success me-2' href='./admin.php'>admin</a>";
+                
+                if(isset($_SESSION['admin'])) include "./front/option_admin.php";
+                else include "./front/option_user.php";
+
+                echo "<button class='btn btn-outline-success logout-btn ms-3 me-3'>logout</button>";
               }
               else echo "<button class='btn btn-outline-success login-btn'>login</button>";
             ?>
@@ -95,6 +89,11 @@ include_once "./api/db.php";
     <?php
     if(isset($_GET['do'])){
       $file = "./front/{$_GET['do']}.php";
+      if(file_exists($file)) include $file;
+      else include "./front/main.php";
+    }
+    else if(isset($_GET['ad'])){
+      $file = "./back/{$_GET['ad']}.php";
       if(file_exists($file)) include $file;
       else include "./front/main.php";
     }
