@@ -5,6 +5,9 @@ const loginModal = new bootstrap.Modal("#login-modal", {backdrop:'static'});
 const loginSubmit = $('.login-submit');
 const logoutBtn = $('.logout-btn');
 const regSubmit = $('.reg-submit');
+const galleryGrid = $('.gallery-grid');
+// const galleryImg = $('.gallery-img');
+// const galleryTitle = $('.gallery-title');
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.2) {
@@ -44,9 +47,23 @@ const reg = () => {
         });
     }
 };
+const titleShow = (event) => {
+    let title = $(event.target).find('.gallery-title');
+    title.css({'visibility': 'visible'}).animate({opacity: 1.0}, 200);
+}
+const titleHide = (event) => {
+    let title = $(event.target).find('.gallery-title');
+    title.css({'visibility': 'hide'}).animate({opacity: 0}, 200);
+}
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
 loginSubmit.on('click', login);
 logoutBtn.on('click', logout);
 regSubmit.on('click', reg);
+galleryGrid.on('mouseenter', titleShow);
+// galleryImg.on('mouseover', titleShow);
+// galleryTitle.on('mouseover', titleShow);
+galleryGrid.on('mouseleave', titleHide);
+// galleryImg.on('mouseout', titleHide);
+// galleryTitle.on('mouseout', titleHide);

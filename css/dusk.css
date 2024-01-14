@@ -21,3 +21,23 @@
     top: 0px;
     left: 0px;
 }
+.gallery-grid{
+    /* height: 25vh; */
+    padding-top: 10px;
+}
+.gallery-grid > img{
+    width: 100%;
+    height: auto;
+}
+.gallery-title{
+    position: relative;
+    height: 25%;
+    top: -25%;
+    color: aliceblue;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+}
+.gallery-title > span{
+    position: relative;
+}
