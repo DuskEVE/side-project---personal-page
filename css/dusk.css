@@ -23,21 +23,31 @@
 }
 .gallery-grid{
     /* height: 25vh; */
+    max-height: 30vh;
     padding-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
-.gallery-grid > img{
-    width: 100%;
+.gallery-img{
+    width: auto;
+    max-width: 100%;
     height: auto;
+    max-height: 90%;
+    margin: auto;
+    pointer-events: none;
 }
 .gallery-title{
     position: relative;
+    width: 100%;
     height: 25%;
     top: -25%;
     color: aliceblue;
     visibility: hidden;
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
+    pointer-events: none;
 }
 .gallery-title > span{
     position: relative;
+    pointer-events: none;
 }
