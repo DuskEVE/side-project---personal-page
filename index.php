@@ -14,9 +14,7 @@ include_once "./api/db.php";
 </head>
 <body class="dusk-bg-gray">
 
-  <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="login-modal-label" aria-hidden="true">
-    <?php include "./modal/login.php"; ?>
-  </div>
+  <?php include "./modal/login.php"; ?>
 
   <div class="top">
     <?php
@@ -47,8 +45,7 @@ include_once "./api/db.php";
                 News
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">施工中</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
@@ -68,8 +65,7 @@ include_once "./api/db.php";
                 Video
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">施工中</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
