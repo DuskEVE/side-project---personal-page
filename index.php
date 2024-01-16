@@ -112,10 +112,6 @@ include_once "./api/db.php";
     ?>
   </div>
 
-  <div class="container vh-100">
-
-  </div>
-
   <div class="footer bg-dark text-light d-flex justify-content-center align-items-center">
       <span class="m-auto">page footer</span>
   </div>

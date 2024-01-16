@@ -111,5 +111,6 @@ class myDB{
 $User = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_user');
 $Banner = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_banner');
 $Type = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_type');
+$Gallery = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_gallery');
 
 ?>
