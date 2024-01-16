@@ -18,7 +18,7 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
         for($j=0; $j<4; $j++){
             $gallery = $gallerys[$index];
             echo "
-            <div class='col-12 col-md-3 gallery-grid'>
+            <div class='col-12 col-md-3 gallery-grid' data-id='{$gallery['id']}'>
                 <img class='gallery-img' src='./gallery/{$gallery['img']}'>
                 <div class='gallery-title'>
                     <span>{$gallery['title']}</span>

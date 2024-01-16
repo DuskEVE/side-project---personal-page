@@ -10,6 +10,7 @@ const editBannerBtn = $('.edit-banner-btn');
 const editBannerModal = new bootstrap.Modal("#edit-banner-modal", {backdrop:'static'});
 const bannerInput = $('.banner-input');
 const galleryInput = $('.gallery-input');
+const galleryViewModal = new bootstrap.Modal("#gallery-view-modal", {backdrop:'static'});
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.3) {
