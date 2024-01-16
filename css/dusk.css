@@ -52,6 +52,12 @@
     position: relative;
     pointer-events: none;
 }
+.gallery-upload-preview{
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+}
 .banner-preview, .banner-upload-preview{
     width: 100%;
 }

@@ -9,6 +9,7 @@ const galleryGrid = $('.gallery-grid');
 const editBannerBtn = $('.edit-banner-btn');
 const editBannerModal = new bootstrap.Modal("#edit-banner-modal", {backdrop:'static'});
 const bannerInput = $('.banner-input');
+const galleryInput = $('.gallery-input');
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.2) {
@@ -69,6 +70,12 @@ const bannerPreview = (event) => {
         $('.banner-upload-preview').attr('src', URL.createObjectURL(file));
     }
 }
+const galleryPreview = (event) => {
+    let file = event.target.files[0];
+    if(file){
+        $('.gallery-upload-preview').attr('src', URL.createObjectURL(file));
+    }
+}
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
@@ -79,3 +86,4 @@ galleryGrid.on('mouseover', titleShow);
 galleryGrid.on('mouseout', titleHide);
 editBannerBtn.on('click', editBannerPop);
 bannerInput.on('change', bannerPreview);
+galleryInput.on('change', galleryPreview);
