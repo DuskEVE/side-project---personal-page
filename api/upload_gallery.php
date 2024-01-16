@@ -7,5 +7,5 @@ if(!empty($_FILES['file']['name'])){
 }
 $Gallery->update($_POST);
 
-header("location:../index.php?do=gallery");
+header("location:../index.php?do=upload_gallery");
 ?>
