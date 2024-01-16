@@ -6,6 +6,8 @@ const loginSubmit = $('.login-submit');
 const logoutBtn = $('.logout-btn');
 const regSubmit = $('.reg-submit');
 const galleryGrid = $('.gallery-grid');
+const editBannerBtn = $('.edit-banner-btn');
+const editBannerModal = new bootstrap.Modal("#edit-banner-modal", {backdrop:'static'});
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.2) {
@@ -48,11 +50,14 @@ const reg = () => {
 const titleShow = (event) => {
     let title = $(event.target).find('.gallery-title');
     title.css({'visibility': 'visible'}).animate({opacity: 1.0}, 200);
-}
+};
 const titleHide = (event) => {
     let title = $(event.target).find('.gallery-title');
     title.css({'visibility': 'hide'}).animate({opacity: 0}, 200);
-}
+};
+const editBannerPop = () => {
+    editBannerModal.show();
+};
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
@@ -61,3 +66,4 @@ logoutBtn.on('click', logout);
 regSubmit.on('click', reg);
 galleryGrid.on('mouseover', titleShow);
 galleryGrid.on('mouseout', titleHide);
+editBannerBtn.on('click', editBannerPop);

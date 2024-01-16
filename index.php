@@ -14,7 +14,14 @@ include_once "./api/db.php";
 </head>
 <body class="dusk-bg-gray">
 
-  <?php include "./modal/login.php"; ?>
+  <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="login-modal-label" aria-hidden="true">
+    <?php include "./modal/login.php"; ?>
+  </div>
+
+  <div class="modal fade" id="edit-banner-modal" tabindex="-1" aria-labelledby="edit-banner-modal-label" aria-hidden="true">
+    <?php include "./modal/edit_banner.php"; ?>
+  </div>
+
 
   <div class="top">
     <?php
