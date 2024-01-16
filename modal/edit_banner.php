@@ -15,7 +15,10 @@
                     </div>
                     <div class="mt-3">
                         <label class="form-label" for="file">上傳圖片:</label>
-                        <input class="form-control" type="file" name="file" id="file">
+                        <input class="form-control banner-input" type="file" name="file" id="file">
+                    </div>
+                    <div class="mt-3">
+                        <img class="banner-upload-preview" src="">
                     </div>
                     <div class="mt-3">
                         <input class="btn-secondary" type="submit" value="確認">

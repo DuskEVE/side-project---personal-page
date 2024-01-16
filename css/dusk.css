@@ -52,6 +52,6 @@
     position: relative;
     pointer-events: none;
 }
-.banner-preview{
+.banner-preview, .banner-upload-preview{
     width: 100%;
 }
