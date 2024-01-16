@@ -23,7 +23,7 @@ if(!isset($_SESSION['admin'])) echo "<script>location.href = './index.php';</scr
                     Home page(defult)
                 </td>
                 <td>
-                    <button class="btn btn-secondary edit-banner-btn" data-id="0">編輯版面橫幅圖片</button>
+                    <button class="btn btn-secondary edit-banner-btn" data-id="0" data-name="Home page">編輯版面橫幅圖片</button>
                 </td>
             </tr>
             
@@ -47,7 +47,9 @@ if(!isset($_SESSION['admin'])) echo "<script>location.href = './index.php';</scr
                     <?=$data['name']?>
                 </td>
                 <td>
-                    <button class="btn btn-secondary edit-banner-btn" data-id="<?=$data['id']?>">編輯版面橫幅圖片</button>
+                    <button class="btn btn-secondary edit-banner-btn" data-id="<?=$data['id']?>" data-name="<?=$data['name']?>">
+                    編輯版面橫幅圖片
+                </button>
                 </td>
             </tr>
 

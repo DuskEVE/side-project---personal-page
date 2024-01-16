@@ -55,7 +55,11 @@ const titleHide = (event) => {
     let title = $(event.target).find('.gallery-title');
     title.css({'visibility': 'hide'}).animate({opacity: 0}, 200);
 };
-const editBannerPop = () => {
+const editBannerPop = (event) => {
+    let id = $(event.target).data('id');
+    let name = $(event.target).data('name');
+    $('#type-id').attr('value', id);
+    $('#type-label').text(`版面: ${name}`);
     editBannerModal.show();
 };
 

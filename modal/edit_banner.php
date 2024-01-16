@@ -7,21 +7,11 @@
         </div>
         <div class="modal-body text-center">
             <form action="./api/edit_banner.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="type-id">
                 <fieldset>
                     <legend>版面橫幅編輯</legend>
                     <div class="mt-3">
-                        <label class="form-label" for="type">版面:</label>
-                        <select class="form-control" name="type" id="type">
-                            <option value="0">Home page(defult)</option>
-                            <?php
-                            $types = $Type->searchAll();
-                            foreach($types as $type){
-                            ?>
-                            <option value="<?=$type['id']?>"><?=$type['name']?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
+                        <label class="form-label" id="type-label" for="type"></label>
                     </div>
                     <div class="mt-3">
                         <label class="form-label" for="file">上傳圖片:</label>
