@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
             <div>
-                <img class="gallery-img" src="https://picsum.photos/id/1/1920/1080">
+                <img class="gallery-view" src="https://picsum.photos/id/1/1920/1080">
             </div>
             <div>
                 <span class="gallert-text"></span>

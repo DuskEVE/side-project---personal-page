@@ -70,13 +70,20 @@ const bannerPreview = (event) => {
     if(file){
         $('.banner-upload-preview').attr('src', URL.createObjectURL(file));
     }
-}
+};
 const galleryPreview = (event) => {
     let file = event.target.files[0];
     if(file){
         $('.gallery-upload-preview').attr('src', URL.createObjectURL(file));
     }
 }
+const galleryDisplay = (event) => {
+    let id = $(event.target).data('id');
+    $.post('./api/get_gallery.php', {id}, (response) => {
+        $('.gallery-view').attr('src', `./gallery/${response}`);
+    });
+    galleryViewModal.show();
+};
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
@@ -85,6 +92,7 @@ logoutBtn.on('click', logout);
 regSubmit.on('click', reg);
 galleryGrid.on('mouseover', titleShow);
 galleryGrid.on('mouseout', titleHide);
+galleryGrid.on('click', galleryDisplay);
 editBannerBtn.on('click', editBannerPop);
 bannerInput.on('change', bannerPreview);
 galleryInput.on('change', galleryPreview);
