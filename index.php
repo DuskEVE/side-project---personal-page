@@ -1,5 +1,6 @@
 <?php
 include_once "./api/db.php";
+$types = $Type->searchAll();
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +69,14 @@ include_once "./api/db.php";
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="./index.php?do=gallery">Gallery</a></li>
                 <li><hr class="dropdown-divider"></li>
+                <?php
+                foreach($types as $type){
+                  echo "
+                    <li><a class='dropdown-item' href='./index.php?do=gallery&type={$type['id']}'>{$type['name']}</a></li>
+                    <li><hr class='dropdown-divider'></li>
+                  ";
+                }
+                ?>
                 <li><a class="dropdown-item" href="./index.php?do=upload_gallery">upload image</a></li>
               </ul>
             </li>

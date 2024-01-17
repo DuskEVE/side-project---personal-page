@@ -3,10 +3,7 @@
         User option
     </a>
     <ul class='dropdown-menu'>
-        <li><a class='dropdown-item' href='#'>Action</a></li>
-        <li>
-            <hr class='dropdown-divider'>
-        </li>
-        <li><a class='dropdown-item' href='#'>Something else here</a></li>
+        <li><a class='dropdown-item' href='./index.php?do=edit_user'>帳號管理</a></li>
+        <li><hr class='dropdown-divider'></li>
     </ul>
 </div>

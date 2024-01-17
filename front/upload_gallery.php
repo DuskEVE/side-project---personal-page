@@ -1,5 +1,9 @@
 <?php
-if(!isset($_SESSION['user'])) echo "<script>location.href = './index.php';</script>";
+if(!isset($_SESSION['user'])) echo "
+<script>
+    alert('請先登入會員!');
+    location.href = './index.php';
+</script>";
 ?>
 <h3 class="text-center text-light">上傳圖片</h3>
 <form action="./api/upload_gallery.php" method="post" enctype="multipart/form-data">

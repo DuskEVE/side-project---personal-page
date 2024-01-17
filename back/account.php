@@ -27,7 +27,7 @@ if(!isset($_SESSION['admin'])) echo "<script>location.href = './index.php';</scr
                 <input type="hidden" name="id[]" value="<?=$data['id']?>">
                 <tr>
                     <td><?=$data['user']?></td>
-                    <td><?=$data['password']?></td>
+                    <td><?=str_repeat("*", strlen($data['password']))?></td>
                     <td><?=$data['email']?></td>
                     <td><input type="checkbox" name="admin[]" value="<?=$data['id']?>" <?=$data['admin']==1?"checked":""?>></td>
                     <td><input type="checkbox" name="del[]" value="<?=$data['id']?>">刪除使用者</td>

@@ -8,5 +8,7 @@
         <li><a class='dropdown-item' href='./index.php?ad=account'>使用者管理</a></li>
         <li><hr class='dropdown-divider'></li>
         <li><a class='dropdown-item' href='./index.php?ad=banner'>版面橫幅管理</a></li>
+        <li><hr class='dropdown-divider'></li>
+        <li><a class='dropdown-item' href='./index.php?do=edit_user'>帳號管理</a></li>
     </ul>
 </div>

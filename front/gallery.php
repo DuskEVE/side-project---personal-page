@@ -1,5 +1,5 @@
 <?php
-$total = (isset($_GET['type'])? $Gallery->count(['type_id'=>$type]):$Gallery->count());
+$total = (isset($_GET['type'])? $Gallery->count(['type_id'=>$_GET['type']]):$Gallery->count());
 $pageCount = ceil($total / 20);
 $currentPage = (isset($_GET['p'])? $_GET['p']:1);
 $start = ($currentPage-1) * 20;
