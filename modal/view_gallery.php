@@ -8,9 +8,18 @@
         </div>
         <div class="modal-body">
             <div>
-                <img class="gallery-view" src="https://picsum.photos/id/1/1920/1080">
+                <img class="gallery-view" src="">
             </div>
-            <div>
+            <div class="d-flex justify-content-between mt-2 mb-2">
+                <div class="gallery-title"></div>
+                <?php if(isset($_SESSION['user'])){?>
+                <div class='gallery-like btn btn-secondary gallery-like-btn' data-user='<?=$_SESSION['user']?>'>
+                    <i class='fa-regular fa-heart' style="pointer-events: none;"></i>
+                    <!-- <span class='gallery-like-count'>0</span> -->
+                </div>
+                <?php }?>
+            </div>
+            <div class="mt-2 mb-2">
                 <span class="gallert-text"></span>
             </div>
         </div>

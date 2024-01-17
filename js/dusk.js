@@ -12,6 +12,7 @@ const bannerInput = $('.banner-input');
 const galleryInput = $('.gallery-input');
 const galleryViewModal = new bootstrap.Modal("#gallery-view-modal");
 const editUserSubmit = $('.edit-user-submit');
+const galleryLikeBtn = $('.gallery-like-btn');
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.3) {
@@ -55,11 +56,11 @@ const reg = () => {
     }
 };
 const titleShow = (event) => {
-    let title = $(event.target).find('.gallery-title');
+    let title = $(event.target).find('.gallery-info');
     title.css({'visibility': 'visible'}).animate({opacity: 1.0}, 200);
 };
 const titleHide = (event) => {
-    let title = $(event.target).find('.gallery-title');
+    let title = $(event.target).find('.gallery-info');
     title.css({'visibility': 'hide'}).animate({opacity: 0}, 200);
 };
 const editBannerPop = (event) => {
@@ -83,9 +84,16 @@ const galleryPreview = (event) => {
 }
 const galleryDisplay = (event) => {
     let id = $(event.target).data('id');
+    let user = $(event.target).data('user');
     $.post('./api/get_gallery.php', {id}, (response) => {
         $('.gallery-view').attr('src', `./gallery/${response}`);
+        $('#gallery-view-modal').find('.gallery-like-btn').attr('data-id', id);
     });
+    if(user.length > 0){
+        $.post('./api/get_gallery.php', {id}, (response) => {
+
+        });
+    }
     galleryViewModal.show();
 };
 const editUser = () => {
@@ -107,6 +115,26 @@ const editUser = () => {
         });
     }
 };
+const like = (event) => {
+    let id = $(event.target).data('id');
+    let likeCount = $(`#gallery-${id}`).find('.like-count');
+    let count = Number(likeCount.text());
+    let user = $(event.target).data('user');
+    $.post('./api/like.php', {id, user}, (response) => {
+        if(response == '1'){
+            console.log({id, user});
+            console.log(response, typeof(response));
+            $(event.target).find('i').addClass('fa-solid').removeClass('fa-regular');
+            likeCount.text(`${(count+1)}`);
+        }
+        else{
+            console.log({id, user});
+            console.log(response, typeof(response));
+            $(event.target).find('i').addClass('fa-regular').removeClass('fa-solid');
+            likeCount.text(`${(count-1)}`);
+        }
+    });
+};
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
@@ -120,3 +148,4 @@ editBannerBtn.on('click', editBannerPop);
 bannerInput.on('change', bannerPreview);
 galleryInput.on('change', galleryPreview);
 editUserSubmit.on('click', editUser);
+galleryLikeBtn.on('click', like);

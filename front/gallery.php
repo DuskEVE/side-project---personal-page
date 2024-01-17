@@ -17,12 +17,18 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
         echo "<div class='row'>";
         for($j=0; $j<4; $j++){
             $gallery = $gallerys[$index];
+            $likeCount = $GalleryLike->count(['gallery_id'=>$gallery['id']]);
             echo "
-            <div class='col-12 col-md-3 gallery-grid' data-id='{$gallery['id']}'>
+            <div class='col-12 col-md-3 gallery-grid' data-id='{$gallery['id']}' data-user='"
+                .(isset($_SESSION['user'])? $_SESSION['user']:"")."'>
                 <img class='gallery-img' src='./gallery/{$gallery['img']}'>
-                <div class='gallery-title'>
-                    <span>{$gallery['title']}</span>
-                    <span>{$gallery['user']}</span>
+                <div class='gallery-info'>
+                    <div class='gallery-title ps-2'>{$gallery['title']}</div>
+                    <div class='gallery-user ps-2'>{$gallery['user']}</div>
+                    <div class='gallery-like' id='gallery-{$gallery['id']}'>
+                        <i class='fa-regular fa-heart'></i>
+                        <span class='like-count'>$likeCount</span>
+                    </div>
                 </div>
             </div>
             ";

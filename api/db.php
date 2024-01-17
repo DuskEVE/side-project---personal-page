@@ -90,7 +90,8 @@ class myDB{
 
     function delete($target){
         $pdo = $this->dbLogIn();
-        $sql = "delete from `$this->table` where `id`='{$target['id']}'";
+        $targetSet = $this->targetToString($target, "&&");
+        $sql = "delete from `$this->table` where $targetSet";
 
         return $pdo->exec($sql);
     }
@@ -112,5 +113,6 @@ $User = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_user');
 $Banner = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_banner');
 $Type = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_type');
 $Gallery = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_gallery');
+$GalleryLike = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_gallery_like');
 
 ?>
