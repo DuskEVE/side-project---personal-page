@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-01-16 08:52:35
+-- 產生時間： 2024-01-18 09:27:10
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -72,20 +72,46 @@ INSERT INTO `p01_gallery` (`id`, `title`, `text`, `img`, `user`, `type_id`) VALU
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `p01_gallery_like`
+--
+
+CREATE TABLE `p01_gallery_like` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `gallery_id` int(10) UNSIGNED NOT NULL,
+  `user` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `p01_gallery_like`
+--
+
+INSERT INTO `p01_gallery_like` (`id`, `gallery_id`, `user`) VALUES
+(5, 2, 'test'),
+(6, 3, 'admin'),
+(7, 5, 'admin'),
+(34, 2, 'admin'),
+(37, 7, 'admin'),
+(39, 8, 'admin'),
+(40, 6, 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `p01_type`
 --
 
 CREATE TABLE `p01_type` (
   `id` int(4) UNSIGNED NOT NULL,
-  `name` text NOT NULL
+  `name` text NOT NULL,
+  `display` int(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 傾印資料表的資料 `p01_type`
 --
 
-INSERT INTO `p01_type` (`id`, `name`) VALUES
-(2, 'Elite dangerous');
+INSERT INTO `p01_type` (`id`, `name`, `display`) VALUES
+(2, 'Elite dangerous', 1);
 
 -- --------------------------------------------------------
 
@@ -126,6 +152,12 @@ ALTER TABLE `p01_gallery`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `p01_gallery_like`
+--
+ALTER TABLE `p01_gallery_like`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `p01_type`
 --
 ALTER TABLE `p01_type`
@@ -154,10 +186,16 @@ ALTER TABLE `p01_gallery`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `p01_gallery_like`
+--
+ALTER TABLE `p01_gallery_like`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `p01_type`
 --
 ALTER TABLE `p01_type`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `p01_user`
