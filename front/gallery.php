@@ -12,12 +12,16 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
     if(isset($_GET['type'])) $gallerys = $Gallery->searchAll(['type_id'=>$_GET['type']], "limit $start,20");
     else $gallerys = $Gallery->searchAll([], "limit $start,20");
 
+    $user = "";
+    if(isset($_SESSION['user'])) $user = $_SESSION['user'];
     $index = 0;
     for($i=0; $i<5; $i++){
         echo "<div class='row'>";
         for($j=0; $j<4; $j++){
             $gallery = $gallerys[$index];
             $likeCount = $GalleryLike->count(['gallery_id'=>$gallery['id']]);
+            $like = 'fa-regular';
+            if(strlen($user)>0 && $GalleryLike->count(['gallery_id'=>$gallery['id'], 'user'=>$user])) $like = 'fa-solid';
             echo "
             <div class='col-12 col-md-3 gallery-grid' data-id='{$gallery['id']}' data-user='"
                 .(isset($_SESSION['user'])? $_SESSION['user']:"")."'>
@@ -26,7 +30,7 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
                     <div class='gallery-title ps-2'>{$gallery['title']}</div>
                     <div class='gallery-user ps-2'>{$gallery['user']}</div>
                     <div class='gallery-like' id='gallery-{$gallery['id']}'>
-                        <i class='fa-regular fa-heart'></i>
+                        <i class='$like fa-heart'></i>
                         <span class='like-count'>$likeCount</span>
                     </div>
                 </div>

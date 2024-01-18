@@ -134,6 +134,7 @@ const like = (event) => {
             console.log(response, typeof(response));
             $(event.target).removeClass('btn-secondary').addClass('btn-primary');
             $(event.target).find('i').addClass('fa-solid').removeClass('fa-regular');
+            $(`#gallery-${id}`).find('i').addClass('fa-solid').removeClass('fa-regular');
             likeCount.text(`${(count+1)}`);
             gsap.to(event.target, {
                 width:'+=30',
@@ -150,6 +151,7 @@ const like = (event) => {
         else{
             $(event.target).removeClass('btn-primary').addClass('btn-secondary');
             $(event.target).find('i').addClass('fa-regular').removeClass('fa-solid');
+            $(`#gallery-${id}`).find('i').addClass('fa-regular').removeClass('fa-solid');
             likeCount.text(`${(count-1)}`);
         }
     });
