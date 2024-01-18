@@ -8,8 +8,12 @@ const logoutBtn = $('.logout-btn');
 const regSubmit = $('.reg-submit');
 const galleryGrid = $('.gallery-grid');
 const editBannerBtn = $('.edit-banner-btn');
+const addTypeModal = new bootstrap.Modal("#add-type-modal", {backdrop:'static'});
 const editBannerModal = new bootstrap.Modal("#edit-banner-modal", {backdrop:'static'});
 const bannerInput = $('.banner-input');
+const addTypeBtn = $('.add-type-btn');
+const displayTypeBtn = $('.display-type-btn');
+const deleteTypeBtn = $('.delete-type-btn');
 const galleryInput = $('.gallery-input');
 const galleryViewModal = new bootstrap.Modal("#gallery-view-modal");
 const editUserSubmit = $('.edit-user-submit');
@@ -156,6 +160,28 @@ const like = (event) => {
         }
     });
 };
+const addTypePop = () => {
+    addTypeModal.show();
+};
+const displayType = (event) => {
+    let id = $(event.target).data('id');
+    $.post('./api/display_type.php', {id}, (response) => {
+        if(response === '1'){
+            $(event.target).removeClass('btn-primary').addClass('btn-secondary');
+            $(event.target).text('隱藏版面');
+        }
+        else{
+            $(event.target).removeClass('btn-secondary').addClass('btn-primary');
+            $(event.target).text('顯示版面');
+        }
+    });
+};
+const deleteType = (event) => {
+    let id = $(event.target).data('id');
+    $.post('./api/delete_type.php', {id}, () => {
+        $(`#type-${id}`).remove();
+    });
+};
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
@@ -166,6 +192,9 @@ galleryGrid.on('mouseover', titleShow);
 galleryGrid.on('mouseout', titleHide);
 galleryGrid.on('click', galleryDisplay);
 editBannerBtn.on('click', editBannerPop);
+addTypeBtn.on('click', addTypePop);
+displayTypeBtn.on('click', displayType);
+deleteTypeBtn.on('click', deleteType);
 bannerInput.on('change', bannerPreview);
 galleryInput.on('change', galleryPreview);
 editUserSubmit.on('click', editUser);

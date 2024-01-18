@@ -15,33 +15,35 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
     $user = "";
     if(isset($_SESSION['user'])) $user = $_SESSION['user'];
     $index = 0;
-    for($i=0; $i<5; $i++){
-        echo "<div class='row'>";
-        for($j=0; $j<4; $j++){
-            $gallery = $gallerys[$index];
-            $likeCount = $GalleryLike->count(['gallery_id'=>$gallery['id']]);
-            $like = 'fa-regular';
-            if(strlen($user)>0 && $GalleryLike->count(['gallery_id'=>$gallery['id'], 'user'=>$user])) $like = 'fa-solid';
-            echo "
-            <div class='col-12 col-md-3 gallery-grid' data-id='{$gallery['id']}' data-user='"
-                .(isset($_SESSION['user'])? $_SESSION['user']:"")."'>
-                <img class='gallery-img' src='./gallery/{$gallery['img']}'>
-                <div class='gallery-info'>
-                    <div class='gallery-title ps-2'>{$gallery['title']}</div>
-                    <div class='gallery-user ps-2'>{$gallery['user']}</div>
-                    <div class='gallery-like' id='gallery-{$gallery['id']}'>
-                        <i class='$like fa-heart'></i>
-                        <span class='like-count'>$likeCount</span>
+    if($total > 0){
+        for($i=0; $i<5; $i++){
+            echo "<div class='row'>";
+            for($j=0; $j<4; $j++){
+                $gallery = $gallerys[$index];
+                $likeCount = $GalleryLike->count(['gallery_id'=>$gallery['id']]);
+                $like = 'fa-regular';
+                if(strlen($user)>0 && $GalleryLike->count(['gallery_id'=>$gallery['id'], 'user'=>$user])) $like = 'fa-solid';
+                echo "
+                <div class='col-12 col-md-3 gallery-grid' data-id='{$gallery['id']}' data-user='"
+                    .(isset($_SESSION['user'])? $_SESSION['user']:"")."'>
+                    <img class='gallery-img' src='./gallery/{$gallery['img']}'>
+                    <div class='gallery-info'>
+                        <div class='gallery-title ps-2'>{$gallery['title']}</div>
+                        <div class='gallery-user ps-2'>{$gallery['user']}</div>
+                        <div class='gallery-like' id='gallery-{$gallery['id']}'>
+                            <i class='$like fa-heart'></i>
+                            <span class='like-count'>$likeCount</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            ";
+                ";
 
-            $index++;
+                $index++;
+                if($index >= count($gallerys)) break;
+            }
+            echo "</div>";
             if($index >= count($gallerys)) break;
         }
-        echo "</div>";
-        if($index >= count($gallerys)) break;
     }
     ?>
 </div>

@@ -1,6 +1,6 @@
 <?php
 include_once "./api/db.php";
-$types = $Type->searchAll();
+$types = $Type->searchAll(['display'=>1]);
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +17,10 @@ $types = $Type->searchAll();
 
   <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="login-modal-label" aria-hidden="true">
     <?php include "./modal/login.php"; ?>
+  </div>
+
+  <div class="modal fade" id="add-type-modal" tabindex="-1" aria-hidden="true">
+    <?php include "./modal/add_type.php"; ?>
   </div>
 
   <div class="modal fade" id="edit-banner-modal" tabindex="-1" aria-hidden="true">
@@ -67,7 +71,7 @@ $types = $Type->searchAll();
                 Gallery
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="./index.php?do=gallery">Gallery</a></li>
+                <li><a class="dropdown-item" href="./index.php?do=gallery">All</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <?php
                 foreach($types as $type){
