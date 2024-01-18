@@ -66,6 +66,10 @@
     width: 20%;
     /* pointer-events: none; */
 }
+.gallery-like-btn{
+    position: relative;
+    width: 100px;
+}
 .gallery-upload-preview{
     width: auto;
     max-width: 100%;

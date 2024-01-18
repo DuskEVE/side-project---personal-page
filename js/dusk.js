@@ -1,3 +1,4 @@
+
 const navBar = document.querySelector(".navbar");
 const navPlaceholder = document.querySelector(".nav-placeholder");
 const loginBtn = $('.login-btn');
@@ -90,8 +91,15 @@ const galleryDisplay = (event) => {
         $('#gallery-view-modal').find('.gallery-like-btn').attr('data-id', id);
     });
     if(user.length > 0){
-        $.post('./api/get_gallery.php', {id}, (response) => {
-
+        $.post('./api/check_like.php', {id, user}, (response) => {
+            if(response === '1'){
+                $('#gallery-view-modal').find('i').attr('class', 'fa-solid fa-heart');
+                $('#gallery-view-modal').find('.gallery-like-btn').removeClass('btn-secondary').addClass('btn-primary');
+            }
+            else{
+                $('#gallery-view-modal').find('i').attr('class', 'fa-regular fa-heart');
+                $('#gallery-view-modal').find('.gallery-like-btn').removeClass('btn-primary').addClass('btn-secondary');
+            }
         });
     }
     galleryViewModal.show();
@@ -124,12 +132,23 @@ const like = (event) => {
         if(response == '1'){
             console.log({id, user});
             console.log(response, typeof(response));
+            $(event.target).removeClass('btn-secondary').addClass('btn-primary');
             $(event.target).find('i').addClass('fa-solid').removeClass('fa-regular');
             likeCount.text(`${(count+1)}`);
+            gsap.to(event.target, {
+                width:'+=30',
+                height:'+=20',
+                duration: 0.5,
+            })
+            gsap.to(event.target, {
+                width:'-=30',
+                height:'-=20',
+                duration: 0.5,
+                delay:0.5
+            })
         }
         else{
-            console.log({id, user});
-            console.log(response, typeof(response));
+            $(event.target).removeClass('btn-primary').addClass('btn-secondary');
             $(event.target).find('i').addClass('fa-regular').removeClass('fa-solid');
             likeCount.text(`${(count-1)}`);
         }

@@ -13,9 +13,11 @@
             <div class="d-flex justify-content-between mt-2 mb-2">
                 <div class="gallery-title"></div>
                 <?php if(isset($_SESSION['user'])){?>
-                <div class='gallery-like btn btn-secondary gallery-like-btn' data-user='<?=$_SESSION['user']?>'>
-                    <i class='fa-regular fa-heart' style="pointer-events: none;"></i>
-                    <!-- <span class='gallery-like-count'>0</span> -->
+                <div class='gallery-like d-flex justify-content-center align-items-center' style="height: 50px;">
+                    <div class="btn btn-secondary gallery-like-btn d-flex justify-content-center align-items-center" 
+                     data-user='<?=$_SESSION['user']?>'>
+                        <i class='fa-regular fa-heart' style="pointer-events: none;"></i>
+                    </div>
                 </div>
                 <?php }?>
             </div>
