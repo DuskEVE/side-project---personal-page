@@ -11,7 +11,7 @@
                 <img class="gallery-view" src="">
             </div>
             <div class="d-flex justify-content-between mt-2 mb-2">
-                <div class="gallery-title"></div>
+                <div class="gallery-view-title"></div>
                 <?php if(isset($_SESSION['user'])){?>
                 <div class='gallery-like d-flex justify-content-center align-items-center' style="height: 50px;">
                     <div class="btn btn-secondary gallery-like-btn d-flex justify-content-center align-items-center" 
@@ -22,7 +22,7 @@
                 <?php }?>
             </div>
             <div class="mt-2 mb-2">
-                <span class="gallert-text"></span>
+                <span class="gallery-view-text"></span>
             </div>
         </div>
     </div>

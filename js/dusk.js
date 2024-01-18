@@ -91,7 +91,10 @@ const galleryDisplay = (event) => {
     let id = $(event.target).data('id');
     let user = $(event.target).data('user');
     $.post('./api/get_gallery.php', {id}, (response) => {
-        $('.gallery-view').attr('src', `./gallery/${response}`);
+        response = JSON.parse(response);
+        $('.gallery-view').attr('src', `./gallery/${response['img']}`);
+        $('.gallery-view-title').text(response['title']);
+        $('.gallery-view-text').text(response['text']);
         $('#gallery-view-modal').find('.gallery-like-btn').attr('data-id', id);
     });
     if(user.length > 0){
@@ -134,8 +137,6 @@ const like = (event) => {
     let user = $(event.target).data('user');
     $.post('./api/like.php', {id, user}, (response) => {
         if(response == '1'){
-            console.log({id, user});
-            console.log(response, typeof(response));
             $(event.target).removeClass('btn-secondary').addClass('btn-primary');
             $(event.target).find('i').addClass('fa-solid').removeClass('fa-regular');
             $(`#gallery-${id}`).find('i').addClass('fa-solid').removeClass('fa-regular');
