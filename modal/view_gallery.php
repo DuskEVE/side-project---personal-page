@@ -6,7 +6,7 @@
             <!-- <h1 class="modal-title fs-5" id="login-modal-label">Modal title</h1> -->
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body gallery-view-info">
             <div>
                 <img class="gallery-view" src="">
             </div>
@@ -23,6 +23,9 @@
             </div>
             <div class="mt-2 mb-2">
                 <span class="gallery-view-text"></span>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-danger gallery-delete-btn">刪除</button>
             </div>
         </div>
     </div>

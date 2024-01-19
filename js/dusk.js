@@ -18,6 +18,7 @@ const galleryInput = $('.gallery-input');
 const galleryViewModal = new bootstrap.Modal("#gallery-view-modal");
 const editUserSubmit = $('.edit-user-submit');
 const galleryLikeBtn = $('.gallery-like-btn');
+const galleryDeleteBtn = $('.gallery-delete-btn');
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.3) {
@@ -108,6 +109,13 @@ const galleryDisplay = (event) => {
                 $('#gallery-view-modal').find('.gallery-like-btn').removeClass('btn-primary').addClass('btn-secondary');
             }
         });
+        $.post('./api/check_user.php', {id, user}, (response) => {
+            console.log(response);
+            if(response === '1'){
+                galleryDeleteBtn.attr('data-id', id);
+                galleryDeleteBtn.show();
+            }
+        });
     }
     galleryViewModal.show();
 };
@@ -183,6 +191,13 @@ const deleteType = (event) => {
         $(`#type-${id}`).remove();
     });
 };
+const galleryDelete = (event) => {
+    let id = $(event.target).data('id');
+    $.post('./api/delete_gallery.php', {id}, () => {
+        $(`.gallery-grid[data-id=${id}]`).css({'pointer-events':'none'}).empty();
+        galleryViewModal.hide();
+    });
+}
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
@@ -200,3 +215,4 @@ bannerInput.on('change', bannerPreview);
 galleryInput.on('change', galleryPreview);
 editUserSubmit.on('click', editUser);
 galleryLikeBtn.on('click', like);
+galleryDeleteBtn.on('click', galleryDelete);
