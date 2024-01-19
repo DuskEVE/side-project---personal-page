@@ -3,11 +3,12 @@
 <div id="carouselAuto" class="carousel slide" data-bs-ride="carousel" style="height: 400px;">
     <div class="carousel-inner">
         <?php
-        foreach($types as $type){
+        foreach($types as $index=>$type){
             $gallery = $Gallery->searchAll(['type_id'=>$type['id']], "order by `id` desc limit 1");
+            $active = ($index==0? "active":"");
             if(count($gallery) > 0){
                 echo "
-                <div class='carousel-item active'>
+                <div class='carousel-item $active'>
                     <a href='./index.php?do=gallery&type={$type['id']}'>
                         <img src='./gallery/{$gallery[0]['img']}' class='d-block m-auto gallery-carousel'>
                     </a>

@@ -1,5 +1,8 @@
 <?php
-$total = (isset($_GET['type'])? $Gallery->count(['type_id'=>$_GET['type']]):$Gallery->count());
+$total;
+if(isset($_GET['type'])) $total = $Gallery->count(['type_id'=>$_GET['type']]);
+else if(isset($_GET['user'])) $total = $Gallery->count(['user'=>$_GET['user']]);
+else $total = $Gallery->count();
 $pageCount = ceil($total / 20);
 $currentPage = (isset($_GET['p'])? $_GET['p']:1);
 $start = ($currentPage-1) * 20;
@@ -10,6 +13,7 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
     <?php
     $gallerys;
     if(isset($_GET['type'])) $gallerys = $Gallery->searchAll(['type_id'=>$_GET['type']], "limit $start,20");
+    else if(isset($_GET['user'])) $gallerys = $Gallery->searchAll(['user'=>$_GET['user']], "limit $start,20");
     else $gallerys = $Gallery->searchAll([], "limit $start,20");
 
     $user = "";
@@ -49,9 +53,11 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
     if($pageCount > 1){
         echo "<div class='container mb-3 text-center'>";
         for($i=1; $i<=$pageCount; $i++){
-            $type = (isset($_GET['type'])? "&type={$_GET['type']}":"");
+            $target = "";
+            if(isset($_GET['type'])) $target = "type={$_GET['type']}";
+            else if(isset($_GET['user'])) $target = "user={$_GET['user']}";
             $btn = ($i==$currentPage? "btn-primary":"btn-secondary");
-            echo "<a class='btn $btn ms-2 me-2' href='./index.php?do=gallery$type&p=$i'>$i</a>";
+            echo "<a class='btn $btn ms-2 me-2' href='./index.php?do=gallery$target&p=$i'>$i</a>";
         }
     }
     ?>

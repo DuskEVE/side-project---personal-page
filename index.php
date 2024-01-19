@@ -80,8 +80,14 @@ $types = $Type->searchAll(['display'=>1]);
                     <li><hr class='dropdown-divider'></li>
                   ";
                 }
+                if(isset($_SESSION['user'])){
+                  echo "
+                    <li><a class='dropdown-item' href='./index.php?do=gallery&user={$_SESSION['user']}'>My gallery</a></li>
+                    <li><hr class='dropdown-divider'></li>
+                    <li><a class='dropdown-item' href='./index.php?do=upload_gallery'>upload image</a></li>
+                  ";
+                }
                 ?>
-                <li><a class="dropdown-item" href="./index.php?do=upload_gallery">upload image</a></li>
               </ul>
             </li>
             <!-- <li class="nav-item dropdown me-3">
