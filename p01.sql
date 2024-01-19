@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-01-18 09:27:10
+-- 產生時間： 2024-01-19 06:08:03
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -67,7 +67,29 @@ INSERT INTO `p01_gallery` (`id`, `title`, `text`, `img`, `user`, `type_id`) VALU
 (5, 'elite04', '測試上傳', 'elite04.jpg', 'admin', 2),
 (6, 'elite05', '測試上傳', 'elite05.jpg', 'admin', 2),
 (7, 'elite06', '測試上傳', 'elite06.jpg', 'admin', 2),
-(8, 'elite07', '測試上傳', 'elite07.jpg', 'admin', 2);
+(8, 'elite07', '測試上傳', 'elite07.jpg', 'admin', 2),
+(9, 'elite08', '', '20210520205444_1.jpg', 'admin', 2),
+(10, 'elite09', '', '20210526175414_1.jpg', 'admin', 2),
+(11, 'elite10', '', '20210602005708_1.jpg', 'admin', 2),
+(12, 'elite11', '', '20210602005859_1.jpg', 'admin', 2),
+(13, 'elite12', '', '20210603053619_1.jpg', 'admin', 2),
+(14, 'elite13', '', '20210605111614_1.jpg', 'admin', 2),
+(15, 'elite14', '', '20210605152918_2.jpg', 'admin', 2),
+(16, 'elite15', '', '20210605163356_1.jpg', 'admin', 2),
+(17, 'elite16', '', '20210608204556_2.jpg', 'admin', 2),
+(18, 'elite17', '', '20210612192533_2.jpg', 'admin', 2),
+(19, 'elite18', '', '20210612195923_1.jpg', 'admin', 2),
+(20, 'elite19', '', '20210613042252_1.jpg', 'admin', 2),
+(21, 'elite20', '', '20210613152346_1.jpg', 'admin', 2),
+(22, 'elite21', '', '下載 (1).jpg', 'admin', 2),
+(23, 'elite22', '', '下載.jpg', 'admin', 2),
+(24, 'elite23', '', '下載 (2).jpg', 'admin', 2),
+(25, 'elite24', '', '下載 (3).jpg', 'admin', 2),
+(26, 'vh01', '', '20231125121352_1.jpg', 'admin', 4),
+(27, 'vh02', '', '20231125121403_1.jpg', 'admin', 4),
+(28, 'vh03', '', '20231125121425_1.jpg', 'admin', 4),
+(29, 'vh04', '', '20231125121455_1.jpg', 'admin', 4),
+(30, 'nebula01', '', '2oc.jpg', 'test', 5);
 
 -- --------------------------------------------------------
 
@@ -92,7 +114,8 @@ INSERT INTO `p01_gallery_like` (`id`, `gallery_id`, `user`) VALUES
 (34, 2, 'admin'),
 (37, 7, 'admin'),
 (39, 8, 'admin'),
-(40, 6, 'admin');
+(40, 6, 'admin'),
+(41, 30, 'test');
 
 -- --------------------------------------------------------
 
@@ -111,7 +134,9 @@ CREATE TABLE `p01_type` (
 --
 
 INSERT INTO `p01_type` (`id`, `name`, `display`) VALUES
-(2, 'Elite dangerous', 1);
+(2, 'Elite dangerous', 1),
+(4, 'Valheim', 1),
+(5, 'nebula:fleet command', 1);
 
 -- --------------------------------------------------------
 
@@ -183,19 +208,19 @@ ALTER TABLE `p01_banner`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `p01_gallery`
 --
 ALTER TABLE `p01_gallery`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `p01_gallery_like`
 --
 ALTER TABLE `p01_gallery_like`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `p01_type`
 --
 ALTER TABLE `p01_type`
-  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `p01_user`
