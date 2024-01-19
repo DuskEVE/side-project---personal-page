@@ -110,9 +110,8 @@ const galleryDisplay = (event) => {
             }
         });
         $.post('./api/check_user.php', {id, user}, (response) => {
-            console.log(response);
             if(response === '1'){
-                galleryDeleteBtn.attr('data-id', id);
+                galleryDeleteBtn.attr('id', id);
                 galleryDeleteBtn.show();
             }
         });
@@ -192,7 +191,7 @@ const deleteType = (event) => {
     });
 };
 const galleryDelete = (event) => {
-    let id = $(event.target).data('id');
+    let id = Number($(event.target).attr('id'));
     $.post('./api/delete_gallery.php', {id}, () => {
         $(`.gallery-grid[data-id=${id}]`).css({'pointer-events':'none'}).empty();
         galleryViewModal.hide();
