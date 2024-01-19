@@ -82,6 +82,10 @@
     height: auto;
     max-height: 80%;
 }
+.gallery-carousel{
+    width: 480px;
+    height: auto;
+}
 .banner-preview, .banner-upload-preview{
     width: 100%;
 }

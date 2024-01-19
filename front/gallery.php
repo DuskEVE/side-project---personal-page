@@ -45,6 +45,15 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
             if($index >= count($gallerys)) break;
         }
     }
+
+    if($pageCount > 1){
+        echo "<div class='container mb-3 text-center'>";
+        for($i=1; $i<=$pageCount; $i++){
+            $type = (isset($_GET['type'])? "&{$_GET['type']}":"");
+            $btn = ($i==$currentPage? "btn-primary":"btn-secondary");
+            echo "<a class='btn $btn ms-2 me-2' href='./index.php?do=gallery&p=$i'>$i</a>";
+        }
+    }
     ?>
 </div>
 

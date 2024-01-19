@@ -84,7 +84,7 @@ $types = $Type->searchAll(['display'=>1]);
                 <li><a class="dropdown-item" href="./index.php?do=upload_gallery">upload image</a></li>
               </ul>
             </li>
-            <li class="nav-item dropdown me-3">
+            <!-- <li class="nav-item dropdown me-3">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Video
               </a>
@@ -93,7 +93,7 @@ $types = $Type->searchAll(['display'=>1]);
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
-            </li>
+            </li> -->
           </ul>
 
           <div class="d-flex align-items-center ms-3">
