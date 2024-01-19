@@ -10,5 +10,5 @@ if(!empty($_FILES['file']['name'])){
 }
 $Banner->update($banner);
 
-header("location:../index.php?ad=banner");
+header("location:../index.php?ad=main");
 ?>
