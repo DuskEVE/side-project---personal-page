@@ -54,8 +54,8 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
         echo "<div class='container mb-3 text-center'>";
         for($i=1; $i<=$pageCount; $i++){
             $target = "";
-            if(isset($_GET['type'])) $target = "type={$_GET['type']}";
-            else if(isset($_GET['user'])) $target = "user={$_GET['user']}";
+            if(isset($_GET['type'])) $target = "&type={$_GET['type']}";
+            else if(isset($_GET['user'])) $target = "&user={$_GET['user']}";
             $btn = ($i==$currentPage? "btn-primary":"btn-secondary");
             echo "<a class='btn $btn ms-2 me-2' href='./index.php?do=gallery$target&p=$i'>$i</a>";
         }
