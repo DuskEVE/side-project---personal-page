@@ -10,11 +10,17 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
 ?>
 
 <div class="container">
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-warning m-3">最新上傳</button>
+        <button class="btn btn-secondary m-3">最多人喜歡</button>
+    </div>
+
     <?php
     $gallerys;
-    if(isset($_GET['type'])) $gallerys = $Gallery->searchAll(['type_id'=>$_GET['type']], "limit $start,20");
-    else if(isset($_GET['user'])) $gallerys = $Gallery->searchAll(['user'=>$_GET['user']], "limit $start,20");
-    else $gallerys = $Gallery->searchAll([], "limit $start,20");
+    $option = "order by `id` desc limit $start,20";
+    if(isset($_GET['type'])) $gallerys = $Gallery->searchAll(['type_id'=>$_GET['type']], $option);
+    else if(isset($_GET['user'])) $gallerys = $Gallery->searchAll(['user'=>$_GET['user']], $option);
+    else $gallerys = $Gallery->searchAll([], $option);
 
     $user = "";
     if(isset($_SESSION['user'])) $user = $_SESSION['user'];
@@ -24,7 +30,6 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
             echo "<div class='row'>";
             for($j=0; $j<4; $j++){
                 $gallery = $gallerys[$index];
-                $likeCount = $GalleryLike->count(['gallery_id'=>$gallery['id']]);
                 $like = 'fa-regular';
                 if(strlen($user)>0 && $GalleryLike->count(['gallery_id'=>$gallery['id'], 'user'=>$user])) $like = 'fa-solid';
                 echo "
@@ -36,7 +41,7 @@ $end = ($currentPage==$pageCount? $total:$currentPage*20);
                         <div class='gallery-user ps-2'>{$gallery['user']}</div>
                         <div class='gallery-like' id='gallery-{$gallery['id']}'>
                             <i class='$like fa-heart'></i>
-                            <span class='like-count'>$likeCount</span>
+                            <span class='like-count'>{$gallery['like_count']}</span>
                         </div>
                     </div>
                 </div>

@@ -41,7 +41,7 @@ $types = $Type->searchAll(['display'=>1]);
       else $banner = $Banner->search(['type_id'=>0])['img'];
       echo "<div class='top-img' style='background-image: url(./banner/$banner);'></div>";
     ?>
-    <!-- <div class="top-img"></div> -->
+
   </div>
 
   <div class="nav-placeholder"></div>
@@ -53,9 +53,7 @@ $types = $Type->searchAll(['display'=>1]);
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li> -->
+
             <li class="nav-item dropdown me-3">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 News
@@ -90,16 +88,6 @@ $types = $Type->searchAll(['display'=>1]);
                 ?>
               </ul>
             </li>
-            <!-- <li class="nav-item dropdown me-3">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Video
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">施工中</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li> -->
           </ul>
 
           <div class="d-flex align-items-center ms-3">
