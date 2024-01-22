@@ -47,9 +47,11 @@ const reg = () => {
     let user = $('#regUser').val();
     let password = $('#regPassword').val();
     let email = $('#regEmail').val();
+    let regex = new RegExp('^[a-zA-Z0-9]*$');
 
     if(user.length < 4) alert('請輸入長度至少為4的使用者帳號');
     else if(password.length < 4) alert('請輸入長度至少為4的密碼');
+    else if(!regex.test(user) || !regex.test(password)) alert('帳號和密碼只允許英文大小寫字母和數字!');
     else if(email.split('@').length <= 1) alert('請輸入正確格式的電子郵件');
     else{
         $.post('./api/reg.php', {user, password, email}, (response) => {
