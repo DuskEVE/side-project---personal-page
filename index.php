@@ -59,7 +59,7 @@ $types = $Type->searchAll(['display'=>1]);
                 News
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">施工中</a></li>
+                <li><a class="dropdown-item" href="./index.php?do=news">News</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
