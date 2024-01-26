@@ -9,7 +9,7 @@ if(!isset($_SESSION['admin'])) echo "<script>location.href = './index.php';</scr
         <button class="btn btn-success update-news-btn mb-3" data-id="0">新增新聞</button>
     </div>
 
-    <form action="./api/edit_news.php" method="post">
+    <form action="./api/update_news.php" method="post">
 
         <table class="table table-dark text-center align-middle">
             <thead>
@@ -34,7 +34,7 @@ if(!isset($_SESSION['admin'])) echo "<script>location.href = './index.php';</scr
                     <td><?=nl2br(mb_substr($data['text'], 0, 50))."..."?></td>
                     <td>
                         <span>
-                            <input type="checkbox" name="display[]" value="<?=$data['id']?>">隱藏&nbsp;
+                            <input type="checkbox" name="display[]" value="<?=$data['id']?>" <?=($data['display']==1?"checked":"")?>>顯示&nbsp;
                         </span>
                         <input type="checkbox" name="del[]" value="<?=$data['id']?>">刪除&nbsp;
                         <button class="btn btn-success update-news-btn" data-id="<?=$data['id']?>">編輯</button>
