@@ -12,7 +12,10 @@ if(is_array($_POST['id'])){
         $News->update($news);
     }
 }
-else $News->update($_POST);
+else{
+    if($_POST['id'] == 0) unset($_POST['id']);
+    $News->update($_POST);
+}
 
 header("location:../index.php?ad=news");
 ?>
