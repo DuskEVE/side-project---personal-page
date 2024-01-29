@@ -37,7 +37,7 @@ if(!isset($_SESSION['admin'])) echo "<script>location.href = './index.php';</scr
                             <input type="checkbox" name="display[]" value="<?=$data['id']?>" <?=($data['display']==1?"checked":"")?>>顯示&nbsp;
                         </span>
                         <input type="checkbox" name="del[]" value="<?=$data['id']?>">刪除&nbsp;
-                        <button class="btn btn-success update-news-btn" data-id="<?=$data['id']?>">編輯</button>
+                        <div class="btn btn-success update-news-btn" data-id="<?=$data['id']?>">編輯</div>
                     </td>
                 </tr>
 

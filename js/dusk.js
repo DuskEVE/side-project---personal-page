@@ -19,6 +19,9 @@ const galleryViewModal = new bootstrap.Modal("#gallery-view-modal");
 const editUserSubmit = $('.edit-user-submit');
 const galleryLikeBtn = $('.gallery-like-btn');
 const galleryDeleteBtn = $('.gallery-delete-btn');
+const updateNewsModal = new bootstrap.Modal("#update-news-modal");
+const updateNewsBtn = $('.update-news-btn');
+const newsPreview = $('.news-preview');
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.3) {
@@ -199,6 +202,33 @@ const galleryDelete = (event) => {
         galleryViewModal.hide();
     });
 }
+const updateNewsPop = (event) => {
+    let id = $(event.target).data('id');
+    $('#news-id').val(id);
+
+    if(id !== 0){
+        $.post('./api/get_news.php', {id}, (response) => {
+            response = JSON.parse(response);
+            $('.type-select').children().each((index, element) => {
+                if(Number($(element).val()) === response.type_id) $(element).attr('selected', 'selected');
+                else $(element).attr('selected', null);
+                console.log(response.type_id, Number($(element).val()));
+            });
+            $('.news-title').val(response.title);
+            $('.news-text').val(response.text);
+        })
+    }
+    else{
+        $('.type-select').children().each((index, element) => {
+            if(index === 0) $(element).attr('selected', 'selected');
+            else $(element).attr('selected', null);
+        });
+        $('.news-title').val('');
+        $('.news-text').val('');
+    }
+
+    updateNewsModal.show();
+}
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
@@ -217,3 +247,4 @@ galleryInput.on('change', galleryPreview);
 editUserSubmit.on('click', editUser);
 galleryLikeBtn.on('click', like);
 galleryDeleteBtn.on('click', galleryDelete);
+updateNewsBtn.on('click', updateNewsPop);

@@ -31,6 +31,11 @@ $types = $Type->searchAll(['display'=>1]);
     <?php include "./modal/view_news.php"; ?>
   </div>
 
+  
+  <div class="modal fade" id="update-news-modal" tabindex="-1" aria-hidden="true">
+    <?php include "./modal/update_news.php"; ?>
+  </div>
+
   <div class="modal fade" id="gallery-view-modal" tabindex="-1" aria-hidden="true">
     <?php include "./modal/view_gallery.php"; ?>
   </div>
