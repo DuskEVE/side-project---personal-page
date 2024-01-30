@@ -24,6 +24,7 @@ const updateNewsBtn = $('.update-news-btn');
 const newsPreview = $('.news-preview');
 const newsTypeBtn = $('.news-type-btn');
 const newsGrid = $('.news-grid');
+const newsPageBtn = $('.news-page-btn');
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.3) {
@@ -52,6 +53,7 @@ const reg = () => {
     let user = $('#regUser').val();
     let password = $('#regPassword').val();
     let email = $('#regEmail').val();
+    // 用RegExp驗證密碼內容，只允許英文字母大小寫和數字
     let regex = new RegExp('^[a-zA-Z0-9]*$');
 
     if(user.length < 4) alert('請輸入長度至少為4的使用者帳號');
@@ -207,7 +209,7 @@ const galleryDelete = (event) => {
 const updateNewsPop = (event) => {
     let id = $(event.target).data('id');
     $('#news-id').val(id);
-
+    // 如果data-id=0，代表是按下新增按鈕，其餘則是編輯按鈕
     if(id !== 0){
         $.post('./api/get_news.php', {id}, (response) => {
             response = JSON.parse(response);
@@ -231,6 +233,16 @@ const updateNewsPop = (event) => {
 
     updateNewsModal.show();
 }
+const switchNewsPage = (event) => {
+    let typeId = $(event.target).data('id');
+    let option = 'order by `id` desc limit 6';
+
+    $.post('./api/get_news.php', {type_id:typeId, option}, (response) => {
+        response = JSON.parse(response);
+        // switch displayed news
+    });
+
+};
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
@@ -250,3 +262,4 @@ editUserSubmit.on('click', editUser);
 galleryLikeBtn.on('click', like);
 galleryDeleteBtn.on('click', galleryDelete);
 updateNewsBtn.on('click', updateNewsPop);
+newsTypeBtn.on('click', switchNewsPage);
