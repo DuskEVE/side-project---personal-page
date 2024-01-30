@@ -22,6 +22,8 @@ const galleryDeleteBtn = $('.gallery-delete-btn');
 const updateNewsModal = new bootstrap.Modal("#update-news-modal");
 const updateNewsBtn = $('.update-news-btn');
 const newsPreview = $('.news-preview');
+const newsTypeBtn = $('.news-type-btn');
+const newsGrid = $('.news-grid');
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.3) {

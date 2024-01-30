@@ -3,11 +3,12 @@
 
 <div class="container text-light">
     <div class="d-flex justify-content-around flex-wrap dusk-bg-gray">
-        <a class="btn btn-warning m-3" href="">所有新聞</a>
+        <button class="btn btn-warning news-type-btn m-3" data-id='0'>所有新聞</button>
         <?php
+
         $types = $Type->searchAll(['display'=>1]);
         foreach($types as $type){
-            echo "<a class='btn btn-secondary m-3' href=''>{$type['name']}</a>";
+            echo "<button class='btn btn-secondary news-type-btn m-3' data-id='{$type['id']}'>{$type['name']}</button>";
         }
         ?>
     </div>
@@ -22,7 +23,7 @@
             $index++;
             $content = nl2br($news['text']);
             echo "
-            <div class='mb-3 p-2 col-12 col-md-6'>
+            <div class='mb-3 p-2 col-12 col-md-6 news-grid'>
                 <div class='dusk-bg-gray news-preview p-2'>
                     <h3 class='text-center'>{$news['title']}</h3>
                     <div class='d-flex justify-content-center'>
@@ -37,5 +38,14 @@
         if($index+1 > count($newsList)) break;
     }
     ?>
+</div>
 
+<div class="container text-center">
+    <?php 
+    $pageCount = ceil(($News->count(['display'=>1])) / 4);
+    for($i=1; $i<=$pageCount; $i++){
+        $btnColor = ($i==1? "btn-primary":"btn-secondary");
+        echo "<button class='btn $btnColor news-page-btn m-2' data-page='$i'>$i</button>";
+    }
+    ?>
 </div>

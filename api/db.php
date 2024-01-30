@@ -116,4 +116,11 @@ $Gallery = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_gallery');
 $GalleryLike = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_gallery_like');
 $News = new myDB('localhost', 'utf8', 'p01', 'root', '', 'p01_news');
 
+function getUrl($get){
+    $targetSet = [];
+    foreach($get as $key=>$value){
+        array_push($targetSet, "$key=$value");
+    }
+    return "./index.php?".(join("&", $targetSet));
+}
 ?>

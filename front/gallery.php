@@ -8,14 +8,6 @@ $currentPage = (isset($_GET['p']) && $_GET['p']<=$pageCount? $_GET['p']:1);
 $start = ($currentPage-1) * 20;
 $end = ($currentPage==$pageCount? $total:$currentPage*20);
 
-function getUrl($get){
-    $targetSet = [];
-    foreach($get as $key=>$value){
-        array_push($targetSet, "$key=$value");
-    }
-    return "./index.php?".(join("&", $targetSet));
-}
-
 $orderDate = $_GET;
 $orderDate['order'] = "id";
 $orderLike = $_GET;
@@ -24,6 +16,8 @@ $orderLike['order'] = "like_count";
 $order = "id";
 if(isset($_GET['order']) && in_array($_GET['order'], ["id", "like_count"])) $order = $_GET['order'];
 $option = "order by `$order` desc limit $start,20";
+
+// getUrl function in ./api/db.php
 ?>
 
 <div class="container">
@@ -72,7 +66,7 @@ $option = "order by `$order` desc limit $start,20";
     }
 
     if($pageCount > 1){
-        echo "<div class='container mb-3 text-center'>";
+        echo "<div class='container text-center'>";
         for($i=1; $i<=$pageCount; $i++){
             $target = "";
             if(isset($_GET['type'])) $target = "&type={$_GET['type']}";
@@ -80,8 +74,9 @@ $option = "order by `$order` desc limit $start,20";
             $btn = ($i==$currentPage? "btn-primary":"btn-secondary");
             $page = $_GET;
             $page['p'] = $i;
-            echo "<a class='btn $btn ms-2 me-2' href='".(getUrl($page))."'>$i</a>";
+            echo "<a class='btn $btn m-2' href='".(getUrl($page))."'>$i</a>";
         }
+        echo "</div>";
     }
     ?>
 </div>
