@@ -20,20 +20,20 @@ $orderDate = $_GET;
 $orderDate['order'] = "id";
 $orderLike = $_GET;
 $orderLike['order'] = "like_count";
+
+$order = "id";
+if(isset($_GET['order']) && in_array($_GET['order'], ["id", "like_count"])) $order = $_GET['order'];
+$option = "order by `$order` desc limit $start,20";
 ?>
 
 <div class="container">
     <div class="d-flex justify-content-center">
-        <a class="btn btn-warning m-3" href="<?=getUrl($orderDate)?>">最新上傳</a>
-        <a class="btn btn-secondary m-3" href="<?=getUrl($orderLike)?>">最多人喜歡</a>
+        <a class="btn <?=$order=='id'?"btn-warning":"btn-secondary"?> m-3" href="<?=getUrl($orderDate)?>">最新上傳</a>
+        <a class="btn <?=$order=='like_count'?"btn-warning":"btn-secondary"?> m-3" href="<?=getUrl($orderLike)?>">最多人喜歡</a>
     </div>
 
     <?php
     $gallerys;
-    $order = "id";
-    if(isset($_GET['order']) && in_array($_GET['order'], ["id", "like_count"])) $order = $_GET['order'];
-    $option = "order by `$order` desc limit $start,20";
-
     if(isset($_GET['type'])) $gallerys = $Gallery->searchAll(['type_id'=>$_GET['type']], $option);
     else if(isset($_GET['user'])) $gallerys = $Gallery->searchAll(['user'=>$_GET['user']], $option);
     else $gallerys = $Gallery->searchAll([], $option);

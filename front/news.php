@@ -3,7 +3,7 @@
 
 <div class="container text-light">
     <div class="d-flex justify-content-around flex-wrap dusk-bg-gray">
-        <a class="btn btn-warning m-3" href="">最新消息</a>
+        <a class="btn btn-warning m-3" href="">所有新聞</a>
         <?php
         $types = $Type->searchAll(['display'=>1]);
         foreach($types as $type){
