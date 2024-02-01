@@ -1,3 +1,9 @@
+body{
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
 .dusk-bg-gray{
     background-color: rgb(60, 60, 60);
 }

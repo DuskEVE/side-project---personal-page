@@ -22,9 +22,7 @@ const galleryDeleteBtn = $('.gallery-delete-btn');
 const updateNewsModal = new bootstrap.Modal("#update-news-modal");
 const updateNewsBtn = $('.update-news-btn');
 const newsPreview = $('.news-preview');
-const newsTypeBtn = $('.news-type-btn');
-const newsGrid = $('.news-grid');
-const newsPageBtn = $('.news-page-btn');
+
 
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.3) {
@@ -233,16 +231,6 @@ const updateNewsPop = (event) => {
 
     updateNewsModal.show();
 }
-const switchNewsPage = (event) => {
-    let typeId = $(event.target).data('id');
-    let option = 'order by `id` desc limit 6';
-
-    $.post('./api/get_news.php', {type_id:typeId, option}, (response) => {
-        response = JSON.parse(response);
-        // switch displayed news
-    });
-
-};
 
 addEventListener('scroll', navbarFixed);
 loginBtn.on('click', loginPop);
@@ -262,4 +250,3 @@ editUserSubmit.on('click', editUser);
 galleryLikeBtn.on('click', like);
 galleryDeleteBtn.on('click', galleryDelete);
 updateNewsBtn.on('click', updateNewsPop);
-newsTypeBtn.on('click', switchNewsPage);
