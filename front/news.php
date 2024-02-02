@@ -43,7 +43,7 @@
     ?>
 </div>
 
-<div class="container text-center">
+<div class="container text-center news-page-bar">
     <?php 
     // $pageCount = ceil(($News->count(['display'=>1])) / 4);
     // for($i=1; $i<=$pageCount; $i++){
@@ -57,6 +57,7 @@
     const newsTypeList = $('.news-type-list');
     const newsTypeBtn = $('.news-type-btn');
     const newsContent = $('.news-content');
+    const newsPageBar = $('.news-page-bar');
 
     const getTypeList = () => {
         $.get('./api/get_type.php', {display:1}, (response) => {
@@ -98,12 +99,29 @@
                     duration: 1,
                 }), 1000
             });
+            console.log(type);
+            getPageBar(type);
         });
     };
     const switchNewsType = (event) => {
         let typeId = $(event.target).data('id');
         newsContent.children().fadeOut(1000);
-        setTimeout(() => getNews(typeId), 1000);
+        setTimeout(() => {
+            getNews(typeId);
+        }, 1000);
+    }
+    const getPageBar = (type) => {
+        newsPageBar.empty();
+        $.get('./api/get_newsCount.php', {type_id: type}, (response) => {
+            let pageCount = Math.ceil(response / 6);
+            for(let i=1; i<=pageCount; i++){
+                let btnColor = (i===1? "btn-primary":"btn-secondary");
+                let btn = `
+                    <button class='btn ${btnColor} news-page-btn m-2' data-type='${type}' data-page='${i}'>${i}</button>
+                `;
+                newsPageBar.append(btn);
+            }
+        })
     }
     const changeNewsPage = (event) => {
         let typeId = $(event.target).data('id');
