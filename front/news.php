@@ -72,6 +72,9 @@
     };
     const getNews = (type) => {
         let option = 'order by `id` desc limit 6';
+        let currentH = newsContent.height();
+        newsContent.css({height:`${currentH}px`});
+
         $.get('./api/get_news.php', {type_id:type, option}, (response) => {
             response = JSON.parse(response);
             newsContent.empty();
@@ -87,12 +90,20 @@
                         </div>
                     </div>`;
 
-                newsContent.append(element);
+                $(element).hide().appendTo(newsContent).fadeIn(1000);
             }
+            setTimeout(() => {
+                gsap.to(newsContent, {
+                    height:'auto',
+                    duration: 1,
+                }), 1000
+            });
         });
     };
     const switchNewsType = (event) => {
-
+        let typeId = $(event.target).data('id');
+        newsContent.children().fadeOut(1000);
+        setTimeout(() => getNews(typeId), 1000);
     }
     const changeNewsPage = (event) => {
         let typeId = $(event.target).data('id');
