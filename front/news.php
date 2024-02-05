@@ -73,14 +73,55 @@
     };
     const getNews = (type) => {
         let option = 'order by `id` desc limit 6';
-        let currentH = newsContent.height();
-        newsContent.css({height:`${currentH}px`});
 
         $.get('./api/get_news.php', {type_id:type, option}, (response) => {
             response = JSON.parse(response);
-            newsContent.empty();
+            getPageBar(type);
+            renderNews(response);
+        });
+    };
+    const switchNewsType = (event) => {
+        let typeId = $(event.target).data('id');
+        newsContent.children().fadeOut(1000);
+        setTimeout(() => {
+            getNews(typeId);
+        }, 1000);
+    }
+    const getPageBar = (type) => {
+        newsPageBar.empty();
+        $.get('./api/get_newsCount.php', {type_id: type}, (response) => {
+            let pageCount = Math.ceil(response / 6);
+            for(let i=1; i<=pageCount; i++){
+                let btnColor = (i===1? "btn-primary":"btn-secondary");
+                let btn = `
+                    <button class='btn ${btnColor} news-page-btn m-2' data-id='${type}' data-page='${i}'>${i}</button>
+                `;
+                newsPageBar.append(btn);
+                newsPageBar.children().last().on('click', changeNewsPage);
+            }
+        })
+    }
+    const changeNewsPage = (event) => {
+        let typeId = $(event.target).data('id');
+        let page = $(event.target).data('page');
+        let start = (page-1) * 6;
+        let end = start+6;
+        let option = `order by \`id\` desc limit ${start},${end}`;
+        
+        $.get('./api/get_news.php', {type_id:typeId, option}, (response) => {
+            response = JSON.parse(response);
+            renderNews(response)
+        });
 
-            for(let i=0; i<response.length; i++){
+        $(event.target).siblings('.btn-primary').removeClass('btn-primary').addClass('btn-secondary');
+        $(event.target).removeClass('btn-secondary').addClass('btn-primary');
+    };
+    const renderNews = (response) => {
+        let currentH = newsContent.height();
+        newsContent.css({height:`${currentH}px`});
+        newsContent.empty();
+
+        for(let i=0; i<response.length; i++){
                 let news = response[i];
                 news['text'] = news['text'].replace('/n', '<br>')
                 let element = `
@@ -99,39 +140,6 @@
                     duration: 1,
                 }), 1000
             });
-            console.log(type);
-            getPageBar(type);
-        });
-    };
-    const switchNewsType = (event) => {
-        let typeId = $(event.target).data('id');
-        newsContent.children().fadeOut(1000);
-        setTimeout(() => {
-            getNews(typeId);
-        }, 1000);
-    }
-    const getPageBar = (type) => {
-        newsPageBar.empty();
-        $.get('./api/get_newsCount.php', {type_id: type}, (response) => {
-            let pageCount = Math.ceil(response / 6);
-            for(let i=1; i<=pageCount; i++){
-                let btnColor = (i===1? "btn-primary":"btn-secondary");
-                let btn = `
-                    <button class='btn ${btnColor} news-page-btn m-2' data-type='${type}' data-page='${i}'>${i}</button>
-                `;
-                newsPageBar.append(btn);
-            }
-        })
-    }
-    const changeNewsPage = (event) => {
-        let typeId = $(event.target).data('id');
-        let option = 'order by `id` desc limit 6';
-
-        $.post('./api/get_news.php', {type_id:typeId, option}, (response) => {
-            response = JSON.parse(response);
-            // switch displayed news
-        });
-
     };
 
     newsTypeBtn.on('click', switchNewsType)

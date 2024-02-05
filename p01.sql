@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-01-26 08:57:03
+-- 產生時間： 2024-02-05 08:47:14
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -84,9 +84,9 @@ INSERT INTO `p01_gallery` (`id`, `title`, `text`, `img`, `user`, `like_count`, `
 (19, 'elite18', '', '20210612195923_1.jpg', 'admin', 0, 2),
 (20, 'elite19', '', '20210613042252_1.jpg', 'admin', 0, 2),
 (21, 'elite20', '', '20210613152346_1.jpg', 'admin', 0, 2),
-(22, 'elite21', '', '下載 (1).jpg', 'admin', 0, 2),
-(24, 'elite23', '', '下載 (2).jpg', 'admin', 0, 2),
-(25, 'elite24', '', '下載 (3).jpg', 'admin', 0, 2),
+(22, 'elite21', '', '001.jpg', 'admin', 0, 2),
+(24, 'elite23', '', '002.jpg', 'admin', 0, 2),
+(25, 'elite24', '', '003.jpg', 'admin', 0, 2),
 (26, 'vh01', '', '20231125121352_1.jpg', 'admin', 0, 4),
 (27, 'vh02', '', '20231125121403_1.jpg', 'admin', 0, 4),
 (28, 'vh03', '', '20231125121425_1.jpg', 'admin', 0, 4),
@@ -125,9 +125,15 @@ CREATE TABLE `p01_news` (
 --
 
 INSERT INTO `p01_news` (`id`, `title`, `text`, `type_id`, `date`, `display`) VALUES
-(1, '測試新聞標題01', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 2, '2024-01-25', 1),
-(2, '測試新聞標題02', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 2, '2024-01-25', 1),
-(3, '測試新聞標題03', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 2, '2024-01-25', 1);
+(1, '測試新聞標題01', '編輯測試01', 2, '2024-01-25', 1),
+(2, '測試新聞標題02', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 4, '2024-01-25', 1),
+(3, '測試新聞標題03', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 5, '2024-01-25', 1),
+(5, '新增新聞測試', '新增內容測試123', 4, '0000-00-00', 1),
+(6, '測試新聞標題05', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 2, '2024-01-30', 1),
+(7, '測試新聞標題06', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 2, '2024-01-30', 1),
+(8, '測試新聞標題07', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 2, '2024-01-30', 1),
+(9, '測試新聞標題08', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 2, '2024-01-30', 1),
+(10, '測試新聞標題09', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. \r\nFuga, veniam aut deleniti eos voluptatum, \r\nnostrum temporibus voluptates nam vel, \r\nquas rem voluptas id similique. Omnis voluptas fugit saepe obcaecati necessitatibus?', 2, '2024-01-30', 1);
 
 -- --------------------------------------------------------
 
@@ -239,7 +245,7 @@ ALTER TABLE `p01_gallery_like`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `p01_news`
 --
 ALTER TABLE `p01_news`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `p01_type`
