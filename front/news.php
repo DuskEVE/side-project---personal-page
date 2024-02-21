@@ -87,24 +87,24 @@
         newsContent.empty();
 
         for(let i=0; i<response.length; i++){
-                let news = response[i];
-                news['text'] = news['text'].replace('/n', '<br>')
-                let element = `
-                    <div class='mb-3 p-2 col-12 col-md-6 news-grid'>
-                        <div class='dusk-bg-gray news-preview p-2'>
-                            <h3 class='text-center'>${news['title']}</h3>
-                            <p>${news['text']}</p>
-                        </div>
-                    </div>`;
+            let news = response[i];
+            news['text'] = news['text'].replace('/n', '<br>')
+            let element = `
+                <div class='mb-3 p-2 col-12 col-md-6 news-grid'>
+                    <div class='dusk-bg-gray news-preview p-2'>
+                        <h3 class='text-center'>${news['title']}</h3>
+                        <p>${news['text']}</p>
+                    </div>
+                </div>`;
 
-                $(element).hide().appendTo(newsContent).fadeIn(1000);
-            }
-            setTimeout(() => {
-                gsap.to(newsContent, {
-                    height:'auto',
-                    duration: 1,
-                }), 1000
-            });
+            $(element).hide().appendTo(newsContent).fadeIn(1000);
+        }
+        setTimeout(() => {
+            gsap.to(newsContent, {
+                height:'auto',
+                duration: 1,
+            }), 1000
+        });
     };
     const switchBanner = (typeId) => {
         $.get('./api/get_banner.php', {type_id: typeId}, (response) => {
