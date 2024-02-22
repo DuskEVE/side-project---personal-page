@@ -56,11 +56,11 @@
     const getPageBar = () => {
         newsPageBar.empty();
 
-        let pageCount = Math.ceil(steamNews / 6);
+        let pageCount = Math.ceil(steamNews.length / 6);
         for(let i=1; i<=pageCount; i++){
             let btnColor = (i===1? "btn-primary":"btn-secondary");
             let btn = `
-                <button class='btn ${btnColor} news-page-btn m-2' data-id='${type}' data-page='${i}'>${i}</button>
+                <button class='btn ${btnColor} news-page-btn m-2' data-page='${i}'>${i}</button>
             `;
             newsPageBar.append(btn);
             newsPageBar.children().last().on('click', changeNewsPage);
