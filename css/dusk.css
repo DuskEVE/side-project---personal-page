@@ -98,3 +98,11 @@ body{
 .banner-preview, .banner-upload-preview{
     width: 100%;
 }
+.news-preview{
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+}
+.news-preview > p > img{
+    max-width: 80%;
+}

@@ -84,13 +84,15 @@
         if(end > steamNews.length) end = steamNews.length;
         for(let i=start; i<end; i++){
             let news = steamNews[i];
+            let content = news['contents'];
+            content = content.split('\n').join('</p><p>');
 
             let element = `
                 <div class='mb-3 p-2 col-12 col-md-6 news-grid'>
-                    <div class='dusk-bg-gray news-preview p-2'>
+                    <article class='dusk-bg-gray news-preview p-2'>
                         <h3 class='text-center'>${news['title']}</h3>
-                        ${news['contents']}
-                    </div>
+                        <p>${content}</p>
+                    </article>
                 </div>`;
 
             $(element).hide().appendTo(newsContent).fadeIn(1000);
