@@ -29,10 +29,15 @@
             for(let i=0; i<response.length; i++){
                 let type = response[i];
                 let element = `
-                    <button class="btn btn-secondary news-type-btn m-3" data-typeId='${type['id']}' data-appid='${type['appid']}'>${type['name']}</button>`;
+                    <button class="btn btn-secondary news-type-btn m-3" data-typeid='${type['id']}' data-appid='${type['appid']}'>${type['name']}</button>`;
                 newsTypeList.append(element);
                 $('.news-type-btn').last().on('click', switchNewsType);
             }
+
+            let firstAppId = $('.news-type-btn').eq(0).data('appid');
+            let typeId = $('.news-type-btn').eq(0).data('typeid');
+            getNews(firstAppId);
+            switchBanner(typeId);
         });
     };
     const getNews = (appid) => {
@@ -46,7 +51,7 @@
     };
     const switchNewsType = (event) => {
         let appid = $(event.target).data('appid');
-        let typeId = $(event.target).data('typeId');
+        let typeId = $(event.target).data('typeid');
         newsContent.children().fadeOut(1000);
         setTimeout(() => {
             getNews(appid);
@@ -105,6 +110,7 @@
         });
     };
     const switchBanner = (typeId) => {
+        console.log(typeId);
         $.get('./api/get_banner.php', {type_id: typeId}, (response) => {
             response = JSON.parse(response);
 
@@ -117,5 +123,4 @@
     newsTypeBtn.on('click', switchNewsType)
 
     getTypeList();
-    getNews(359320);
 </script>
