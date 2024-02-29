@@ -41,7 +41,6 @@
         });
     };
     const getNews = (appid) => {
-        // if... 網頁首次載入時
         $.get('./api/get_steamNews.php', {appid, count:30}, (response) => {
             response = JSON.parse(response);
             steamNews = response.appnews.newsitems;
