@@ -28,8 +28,9 @@
             response = JSON.parse(response);
             for(let i=0; i<response.length; i++){
                 let type = response[i];
+                let btn = (i===0?"btn-warning":"btn-secondary");
                 let element = `
-                    <button class="btn btn-secondary news-type-btn m-3" data-typeid='${type['id']}' data-appid='${type['appid']}'>${type['name']}</button>`;
+                    <button class="btn ${btn} news-type-btn m-3" data-typeid='${type['id']}' data-appid='${type['appid']}'>${type['name']}</button>`;
                 newsTypeList.append(element);
                 $('.news-type-btn').last().on('click', switchNewsType);
             }
@@ -41,7 +42,7 @@
         });
     };
     const getNews = (appid) => {
-        $.get('./api/get_steamNews.php', {appid, count:30}, (response) => {
+        $.get('./api/get_steamNews.php', {appid, count:20}, (response) => {
             response = JSON.parse(response);
             steamNews = response.appnews.newsitems;
             getPageBar();
@@ -51,6 +52,8 @@
     const switchNewsType = (event) => {
         let appid = $(event.target).data('appid');
         let typeId = $(event.target).data('typeid');
+        $('.btn-warning').removeClass('btn-warning').addClass('btn-secondary');
+        $(event.target).removeClass('btn-secondary').addClass('btn-warning');
         newsContent.children().fadeOut(1000);
         setTimeout(() => {
             getNews(appid);
@@ -109,7 +112,6 @@
         });
     };
     const switchBanner = (typeId) => {
-        console.log(typeId);
         $.get('./api/get_banner.php', {type_id: typeId}, (response) => {
             response = JSON.parse(response);
 

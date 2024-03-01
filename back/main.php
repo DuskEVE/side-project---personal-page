@@ -53,8 +53,8 @@ if(!isset($_SESSION['admin'])) echo "<script>location.href = './index.php';</scr
                 <td>
                     <div class="d-flex flex-column align-items-center">
                         <button class="m-1 btn btn-success edit-banner-btn" 
-                                data-id="<?=$data['id']?>" data-name="<?=$data['name']?>">
-                            編輯版面橫幅圖片
+                                data-id="<?=$data['id']?>" data-name="<?=$data['name']?>" data-appid="<?=$data['appid']?>">
+                            編輯版面
                         </button>
                         <button class="m-1 btn <?=($data['display']==1?"btn-secondary":"btn-primary")?> display-type-btn" 
                                 data-id="<?=$data['id']?>">

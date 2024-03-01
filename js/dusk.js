@@ -78,9 +78,20 @@ const titleHide = (event) => {
 };
 const editBannerPop = (event) => {
     let id = $(event.target).data('id');
+    let appid = $(event.target).data('appid');
     let name = $(event.target).data('name');
-    $('#type-id').attr('value', id);
-    $('#type-label').text(`版面: ${name}`);
+
+    $('#type-id').val(id);
+    if(id !== 0){
+        $('#type-name').parent().show();
+        $('#type-name').val(name);
+    }
+    else $('#type-name').parent().hide();
+    if(appid !== undefined){
+        $('#type-appid').parent().show();
+        $('#type-appid').val(appid);
+    }
+    else $('#type-appid').parent().hide();
     editBannerModal.show();
 };
 const bannerPreview = (event) => {
@@ -189,6 +200,20 @@ const displayType = (event) => {
             $(event.target).removeClass('btn-secondary').addClass('btn-primary');
             $(event.target).text('顯示版面');
         }
+
+        // reload gallery nav drop-down
+        $.get('./api/get_type.php', {display: 1}, (response) => {
+            let menus = JSON.parse(response);
+            const galleryNav = $('#gallery-nav');
+            galleryNav.empty();
+            menus.forEach(menu => {
+                let element = `
+                <li><a class='dropdown-item' href='./index.php?do=gallery&type=${menu['id']}'>${menu['name']}</a></li>
+                <li><hr class='dropdown-divider'></li>
+                `;
+                galleryNav.append(element);
+            });
+        });
     });
 };
 const deleteType = (event) => {

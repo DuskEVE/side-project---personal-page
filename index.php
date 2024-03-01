@@ -1,6 +1,6 @@
 <?php
 include_once "./api/db.php";
-$types = $Type->searchAll(['display'=>1]);
+$menus = $Type->searchAll(['display'=>1]);
 ?>
 
 <!DOCTYPE html>
@@ -82,13 +82,17 @@ $types = $Type->searchAll(['display'=>1]);
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="./index.php?do=gallery">All</a></li>
                 <li><hr class="dropdown-divider"></li>
+                <div id="gallery-nav">
                 <?php
-                foreach($types as $type){
+                foreach($menus as $menu){
                   echo "
-                    <li><a class='dropdown-item' href='./index.php?do=gallery&type={$type['id']}'>{$type['name']}</a></li>
+                    <li><a class='dropdown-item' href='./index.php?do=gallery&type={$menu['id']}'>{$menu['name']}</a></li>
                     <li><hr class='dropdown-divider'></li>
                   ";
                 }
+                ?>
+                </div>
+                <?php
                 if(isset($_SESSION['user'])){
                   echo "
                     <li><a class='dropdown-item' href='./index.php?do=gallery&user={$_SESSION['user']}'>My gallery</a></li>
