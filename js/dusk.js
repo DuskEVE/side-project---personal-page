@@ -23,7 +23,7 @@ const updateNewsModal = new bootstrap.Modal("#update-news-modal");
 const updateNewsBtn = $('.update-news-btn');
 const newsPreview = $('.news-preview');
 
-
+// 讓navbar在視窗向下滾動30vh後(banner的高度)固定在最上方(fixed-top)
 const navbarFixed = () => {
     if (window.scrollY > window.innerHeight*0.3) {
         navBar.classList.add("fixed-top");
@@ -39,6 +39,7 @@ const loginPop = () => {
 };
 const login = () => {
     let user = {user: $('#user').val(), password: $('#password').val()};
+    // 用ajax的方式向後端送出使用者登入資料，若成功登入就重整頁面，登入失敗的話用alert印出錯誤訊息
     $.post('./api/login_check.php', user, (response) => {
         if(response === 'success') location.reload();
         else alert(response);
@@ -53,7 +54,7 @@ const reg = () => {
     let email = $('#regEmail').val();
     // 用RegExp驗證密碼內容，只允許英文字母大小寫和數字
     let regex = new RegExp('^[a-zA-Z0-9]*$');
-
+    // 先檢查過註冊的資料是否符合規範，再用ajax的方式將資料傳到後端
     if(user.length < 4) alert('請輸入長度至少為4的使用者帳號');
     else if(password.length < 4) alert('請輸入長度至少為4的密碼');
     else if(!regex.test(user) || !regex.test(password)) alert('帳號和密碼只允許英文大小寫字母和數字!');
@@ -68,14 +69,17 @@ const reg = () => {
         });
     }
 };
+// 當滑鼠移到預覽圖片(gallery grid)上時，顯示相關資訊(標題和按讚人數)
 const titleShow = (event) => {
     let title = $(event.target).find('.gallery-info');
     title.css({'visibility': 'visible'}).animate({opacity: 1.0}, 200);
 };
+// 當滑鼠離開預覽圖片(gallery grid)上時，隱藏相關資訊(標題和按讚人數)
 const titleHide = (event) => {
     let title = $(event.target).find('.gallery-info');
     title.css({'visibility': 'hide'}).animate({opacity: 0}, 200);
 };
+// 點擊編輯版面橫幅按鈕時讓bootstra modal視窗顯示，並同時以ajax的方式向後端抓取目標版面的資料
 const editBannerPop = (event) => {
     let id = $(event.target).data('id');
     let appid = $(event.target).data('appid');
@@ -94,18 +98,21 @@ const editBannerPop = (event) => {
     else $('#type-appid').parent().hide();
     editBannerModal.show();
 };
+// 即時產生上傳橫幅圖片的預覽圖
 const bannerPreview = (event) => {
     let file = event.target.files[0];
     if(file){
         $('.banner-upload-preview').attr('src', URL.createObjectURL(file));
     }
 };
+// 即時產生上傳圖片的預覽圖
 const galleryPreview = (event) => {
     let file = event.target.files[0];
     if(file){
         $('.gallery-upload-preview').attr('src', URL.createObjectURL(file));
     }
 }
+// 點及圖片縮圖(gallery grid)時，顯示bootstrap modal並且同時以ajax方式抓取目標圖片的相關資料並更新在modal上
 const galleryDisplay = (event) => {
     let id = $(event.target).data('id');
     let user = $(event.target).data('user');
@@ -116,6 +123,7 @@ const galleryDisplay = (event) => {
         $('.gallery-view-text').text(response['text']);
         $('#gallery-view-modal').find('.gallery-like-btn').attr('data-id', id);
     });
+    // 如果是登入的使用者，則額外檢查是否對該圖片有按過讚
     if(user.length > 0){
         $.post('./api/check_like.php', {id, user}, (response) => {
             if(response === '1'){
@@ -127,6 +135,7 @@ const galleryDisplay = (event) => {
                 $('#gallery-view-modal').find('.gallery-like-btn').removeClass('btn-primary').addClass('btn-secondary');
             }
         });
+        // 檢查登入的使用者是否為該圖片的上傳者，是的話則顯示刪除圖片按鈕
         $.post('./api/check_user.php', {id, user}, (response) => {
             if(response === '1'){
                 galleryDeleteBtn.attr('id', id);
@@ -136,6 +145,7 @@ const galleryDisplay = (event) => {
     }
     galleryViewModal.show();
 };
+// 編輯已註冊使用者，和註冊大致相同
 const editUser = () => {
     let id = $('#editId').val();
     let user = $('#editUser').val();
@@ -155,6 +165,7 @@ const editUser = () => {
         });
     }
 };
+// 點擊喜歡按鈕後，透過ajex的方式向後端傳送資料，並透過回傳資料及時改變按鈕狀態和按讚人數計數
 const like = (event) => {
     let id = $(event.target).data('id');
     let likeCount = $(`#gallery-${id}`).find('.like-count');
@@ -189,6 +200,7 @@ const like = (event) => {
 const addTypePop = () => {
     addTypeModal.show();
 };
+// 於管理頁面控制版面使否顯示給使用者和遊客，透過ajax向後端發出請求並即時改變按鈕狀態
 const displayType = (event) => {
     let id = $(event.target).data('id');
     $.post('./api/display_type.php', {id}, (response) => {
@@ -216,12 +228,14 @@ const displayType = (event) => {
         });
     });
 };
+// 刪除版面
 const deleteType = (event) => {
     let id = $(event.target).data('id');
     $.post('./api/delete_type.php', {id}, () => {
         $(`#type-${id}`).remove();
     });
 };
+// 刪除圖片
 const galleryDelete = (event) => {
     let id = Number($(event.target).attr('id'));
     $.post('./api/delete_gallery.php', {id}, () => {
