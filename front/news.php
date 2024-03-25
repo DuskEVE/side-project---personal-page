@@ -22,7 +22,7 @@
     const newsContent = $('.news-content');
     const newsPageBar = $('.news-page-bar');
     let steamNews = null;
-
+    // 用ajax方式向後端取得所有版面資訊(id和appid)，並且印出按鈕
     const getTypeList = () => {
         $.get('./api/get_type.php', {display:1}, (response) => {
             response = JSON.parse(response);
@@ -41,6 +41,7 @@
             switchBanner(typeId);
         });
     };
+    // 透過get_steamNews.php向steam提供的public api取得遊戲新聞(有CORS，所以無法直接在前端就用js去串steam的api)
     const getNews = (appid) => {
         $.get('./api/get_steamNews.php', {appid, count:20}, (response) => {
             response = JSON.parse(response);
@@ -49,6 +50,7 @@
             renderNews(steamNews, 1);
         });
     };
+    // 切換顯示新聞的遊戲類別
     const switchNewsType = (event) => {
         let appid = $(event.target).data('appid');
         let typeId = $(event.target).data('typeid');
@@ -60,6 +62,7 @@
         }, 1000);
         switchBanner(typeId);
     }
+    // 印出分頁按鈕列
     const getPageBar = () => {
         newsPageBar.empty();
 
@@ -74,6 +77,7 @@
         }
 
     }
+    // 切換分頁
     const changeNewsPage = (event) => {
         let page = $(event.target).data('page');
         renderNews(steamNews, page);
@@ -81,6 +85,7 @@
         $(event.target).siblings('.btn-primary').removeClass('btn-primary').addClass('btn-secondary');
         $(event.target).removeClass('btn-secondary').addClass('btn-primary');
     };
+    // 依指定的頁數印出新聞
     const renderNews = (news, page) => {
         let currentH = newsContent.height();
         newsContent.css({height:`${currentH}px`});
@@ -111,6 +116,7 @@
             }), 1000
         });
     };
+    // 按當前的新聞分類顯示不同的版面橫幅
     const switchBanner = (typeId) => {
         $.get('./api/get_banner.php', {type_id: typeId}, (response) => {
             response = JSON.parse(response);
