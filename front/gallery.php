@@ -1,8 +1,10 @@
 <?php
+// 檢查$_GET來判斷當前是否有按版面類型或使用者來進行分類，並取得符合分類條件的資料筆數來進行分頁計算
 $total;
 if(isset($_GET['type'])) $total = $Gallery->count(['type_id'=>$_GET['type']]);
 else if(isset($_GET['user'])) $total = $Gallery->count(['user'=>$_GET['user']]);
 else $total = $Gallery->count();
+// 每頁最大顯示20張圖片
 $pageCount = ceil($total / 20);
 $currentPage = (isset($_GET['p']) && $_GET['p']<=$pageCount? $_GET['p']:1);
 $start = ($currentPage-1) * 20;
@@ -27,6 +29,7 @@ $option = "order by `$order` desc limit $start,20";
     </div>
 
     <?php
+    // 檢查$_GET來判斷當前是否有按版面類型或使用者來進行分類，並取得符合分類條件的所有資料
     $gallerys;
     if(isset($_GET['type'])) $gallerys = $Gallery->searchAll(['type_id'=>$_GET['type']], $option);
     else if(isset($_GET['user'])) $gallerys = $Gallery->searchAll(['user'=>$_GET['user']], $option);
@@ -36,6 +39,7 @@ $option = "order by `$order` desc limit $start,20";
     if(isset($_SESSION['user'])) $user = $_SESSION['user'];
     $index = 0;
     if($total > 0){
+        // 使用巢狀迴圈印出5列，每列4個圖片
         for($i=0; $i<5; $i++){
             echo "<div class='row'>";
             for($j=0; $j<4; $j++){
@@ -64,7 +68,7 @@ $option = "order by `$order` desc limit $start,20";
             if($index >= count($gallerys)) break;
         }
     }
-
+    // 如果總頁數大於1，印出分頁按鈕
     if($pageCount > 1){
         echo "<div class='container text-center'>";
         for($i=1; $i<=$pageCount; $i++){
