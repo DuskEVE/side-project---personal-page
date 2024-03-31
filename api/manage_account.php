@@ -1,4 +1,5 @@
 <?php
+// 接受來自使用者管理頁面的請求並修改或刪除指定的使用者
 include_once "./db.php";
 
 foreach($_POST['id'] as $id){

@@ -1,4 +1,5 @@
 <?php
+// 接受來自編輯版面橫幅modal (./modal/edit_banner.php)的表單請求並修改banner資料表中指定的資料
 include_once "./db.php";
 $banner['type_id'] = $_POST['id'];
 $check = $Banner->count(['type_id'=>$banner['type_id']]);

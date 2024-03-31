@@ -1,4 +1,5 @@
 <?php
+// 接受來自dusk.js 中的 login function 的請求，用以檢查登入的使用者帳號密碼是否正確
 include_once "./db.php";
 
 if(isset($_POST['user']) && isset($_POST['password'])){

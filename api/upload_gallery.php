@@ -1,4 +1,5 @@
 <?php
+// 接受來自./front/upload_gallery.php的表單請求，將接收到的圖片檔案移動到./gallery並且將資料寫入gallery資料表
 include_once "./db.php";
 
 if(!empty($_FILES['file']['name'])){

@@ -1,4 +1,5 @@
 <?php
+// 接受來自dusk.js中的displayType function的請求，切換type資料表中指定版面的顯示狀態(0 or 1)
 include_once "./db.php";
 $target = $Type->search(['id'=>$_POST['id']]);
 
