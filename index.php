@@ -124,6 +124,7 @@ $menus = $Type->searchAll(['display'=>1]);
 
   <div class="container dusk-bg-lightgray">
     <?php
+    // 透過get是否有ad或do來判斷要include的頁面
     if(isset($_GET['do'])){
       $file = "./front/{$_GET['do']}.php";
       if(file_exists($file)) include $file;
